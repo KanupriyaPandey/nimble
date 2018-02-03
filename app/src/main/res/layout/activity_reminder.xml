@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.projects.android.MyNotes.Activity.ReminderActivity">
+    <ImageView
+        android:id="@+id/rview"
+        android:layout_gravity="center_vertical"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/reminder_img"
+        android:layout_marginTop="174dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="@string/empty_reminder"
+        android:id="@+id/textView"
+        android:layout_below="@+id/rview"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

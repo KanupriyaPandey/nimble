@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">My Notes</string>
+    <string name="app_light_description">A colorful material notes app.</string>
+    <string name="version">v0.1-beta1</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="splash">My Notes...</string>
+    <string name="empty_reminder">Sit back and relax. \n
+        You don\'t have any event today.</string>
+
+    <!--AUTHOR-->
+    <string name="name">Kanupriya Pandey</string>
+    <string name="role">Backend and Frontend Developer</string>
+    <string name="description">I\'m a computer enthusiast and I love to code. I\'m currently pursuing Bachelors of Technology. I\'m also a bibliophile and share an equal love for music.  </string>
+    <string name="name2">Aayush Rajput</string>
+    <string name="role2">Backend Developer</string>
+    <string name="description2">sample</string>
+
+    <!--ABOUT-->
+    <string name="about_support">Support Development</string>
+    <string name="report_bug">Report bug</string>
+    <string name="report_bug_sub">Report bug or request new features.</string>
+    <string name="github">GitHub</string>
+    <string name="github_sub">Fork the repo and push changes or submit new issues.</string>
+    <string name="about_license">License</string>
+    <string name="license">Library Licenses</string>
+    <string name="license_sub">Check third-party libraries used in Notes .</string>
+
+    <!--LINKS-->
+    <string name="mail_link">Send Mail</string>
+    <string name="github_link"><body><a href="https://github.com/KanupriyaPandey">Github Profile</a></body></string>
+    <string name="mail_link2">Send Mail</string>
+    <string name="github_link2"><body><a href="https://github.com/KanupriyaPandey">Github Profile</a></body></string>
+
+    <string name="camera">Camera</string>
+    <string name="audio">Audio</string>
+    <string name="attachment">Attachment</string>
+    <string name="reminder">Reminder</string>
+    <string name="text">Text Note</string>
+
+    <string name="welcome">Welcome</string>
+    <string name="welcome_sub">Don\'t miss an idea! \n
+        With \'My Notes\' app jot down your idea anywhere and anytime.</string>
+
+    <string name="Settings">Settings</string>
+    <string name="About">About</string>
+    <string name="Reminder">Reminder</string>
+    <string name="Text">Text Notes</string>
+    <string name="Other">Other Notes</string>
+    <string name="Trash">Trash</string>
+    <string name="Account">Account Settings</string>
+
+</resources>
