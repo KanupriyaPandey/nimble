@@ -1,4 +1,4 @@
-package com.projects.android.MyNotes.Activity;
+package com.projects.android.MyNotes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.projects.android.MyNotes.R;
 
-public class SplashActivity extends AppCompatActivity {
-    private static int splash_timeout=2000;
+public class Splash extends AppCompatActivity {
+    private static int splash_timeout = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +18,10 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeIntent=new Intent(SplashActivity.this,SignInActivity.class);
+                Intent homeIntent = new Intent(Splash.this, Home.class);
                 startActivity(homeIntent);
                 finish();
             }
-        },splash_timeout);
+        }, splash_timeout);
     }
 }

@@ -1,4 +1,4 @@
-package com.projects.android.MyNotes.Activity;
+package com.projects.android.MyNotes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +15,12 @@ import android.view.View;
 import com.projects.android.MyNotes.R;
 import com.github.clans.fab.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity
+public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    static int IMAGE_CAPTURE=1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final FloatingActionButton camera=(FloatingActionButton)findViewById(R.id.menu_item);
@@ -34,6 +32,30 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 text();
+            }
+        });
+        reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reminder();
+            }
+        });
+        attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attachment();
+            }
+        });
+        audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                audio();
+            }
+        });
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                camera();
             }
         });
 
@@ -48,9 +70,25 @@ public class MainActivity extends AppCompatActivity
   }
 
   public void text(){
-      Intent i=new Intent(MainActivity.this,AddActivity.class);
+      Intent i=new Intent(Home.this,Notes.class);
       startActivity(i);
   }
+    public void reminder(){
+        Intent i=new Intent(Home.this,Reminder.class);
+        startActivity(i);
+    }
+    public void attachment(){
+        Intent i=new Intent(Home.this,Notes.class);
+        startActivity(i);
+    }
+    public void audio(){
+        Intent i=new Intent(Home.this,Notes.class);
+        startActivity(i);
+    }
+    public void camera(){
+        Intent i=new Intent(Home.this,Notes.class);
+        startActivity(i);
+    }
 
     @Override
     public void onBackPressed() {
@@ -62,51 +100,30 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_notes) {
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), Home.class);
             startActivity(i);
         } else if (id == R.id.nav_notebooks) {
 
         } else if (id == R.id.nav_reminders) {
-            Intent i3 = new Intent(getApplicationContext(), ReminderActivity.class);
+            Intent i3 = new Intent(getApplicationContext(), Reminder.class);
             startActivity(i3);
         } else if (id == R.id.nav_trash) {
 
         } else if (id == R.id.nav_about) {
-            Intent i5 = new Intent(getApplicationContext(), AboutActivity.class);
+            Intent i5 = new Intent(getApplicationContext(), About.class);
             startActivity(i5);
         } else if (id == R.id.nav_settings) {
-            Intent i6 = new Intent(getApplicationContext(), SettingsActivity.class);
+            Intent i6 = new Intent(getApplicationContext(), Settings.class);
             startActivity(i6);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

@@ -8,21 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/mynotesicon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme">
         <activity
-            android:name="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar2" />
+            android:name="com.projects.android.MyNotes.activity.Home"
+            android:theme="@style/Theme" />
         <activity
-            android:name="com.projects.android.MyNotes.Activity.AboutActivity"
-            android:parentActivityName="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label="@string/About"/>
+            android:name="com.projects.android.MyNotes.activity.About"
+            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.Activity.ReminderActivity"
-            android:parentActivityName="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label="@string/Reminder" />
+            android:name="com.projects.android.MyNotes.activity.Reminder"
+            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.Activity.SplashActivity"
+            android:name="com.projects.android.MyNotes.activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,20 +28,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.projects.android.MyNotes.Activity.AccountActivity"
-            android:parentActivityName="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label="@string/Account"/>
+            android:name="com.projects.android.MyNotes.activity.Account"
+            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.Activity.SettingsActivity"
-            android:parentActivityName="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label="@string/Settings" />
-        <activity android:name="com.projects.android.MyNotes.Activity.AddActivity"
-            android:parentActivityName="com.projects.android.MyNotes.Activity.MainActivity"
-            android:label=" "/>
-        <activity android:name="com.projects.android.MyNotes.Activity.SignInActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.projects.android.MyNotes.Activity.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-    </application>
+            android:name="com.projects.android.MyNotes.activity.Settings"
+            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+        <activity
+            android:name="com.projects.android.MyNotes.activity.Notes"
+            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+       </application>
 
 </manifest>

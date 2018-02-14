@@ -52,4 +52,6 @@
     <string name="Trash">Trash</string>
     <string name="Account">Account Settings</string>
 
+    <string name="username">Username</string>
+    <string name="userEmail">android.studio@android.com</string>
 </resources>

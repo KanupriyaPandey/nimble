@@ -5,29 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_screen"
-    tools:context="com.projects.android.MyNotes.Activity.SplashActivity">
+    android:background="@drawable/background"
+    tools:context="com.projects.android.MyNotes.activity.Splash">
 
-        <ImageView
-            android:id="@+id/splash_icon"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:src="@mipmap/mynotesicon" />
+    <ImageView
+        android:id="@+id/splash_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/mynotesicon" />
 
-        <com.hanks.htextview.HTextView
-            android:id="@+id/htext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="63dp"
-            android:fontFamily="casual"
-            android:text="My Notes..."
-            android:textColor="@color/primary"
-            android:textSize="30sp"
-            htext:animateType="typer" />
+    <com.hanks.htextview.HTextView
+        android:id="@+id/htext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="63dp"
+        android:fontFamily="casual"
+        android:text="My Notes..."
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        htext:animateType="typer" />
 
 </RelativeLayout>

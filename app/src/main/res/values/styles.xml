@@ -1,58 +1,36 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="ThemeOverlay.AppCompat">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primary2</item>
-        <item name="colorPrimaryDark">@color/primary</item>
-        <item name="colorAccent">@color/accent2</item>
-        <item name="actionBarTheme">@drawable/main_color_grad</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/accent2</item>
-        <item name="colorControlHighlight">@color/primary3</item>
-        <item name="android:textColorHint">@color/primary3</item>
-        <item name="colorButtonNormal">@color/accent</item>
-        <item name="android:navigationIcon">@color/primary3</item>
-        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary6</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="colorAccent">@color/primary3</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
     </style>
-
-    <style name="AppTheme.NoActionBar2" >
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <!-- ActionBar styles -->
-    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <!-- Support library compatibility -->
-        <item name="background">@drawable/main_color_grad</item>
-    </style>
-
 
     <style name="MenuButtonsStyle">
         <item name="fab_size">mini</item>
         <item name="fab_showAnimation">@anim/jump_from_down</item>
         <item name="fab_hideAnimation">@anim/jump_to_down</item>
-        <item name="fab_shadowColor">#444</item>
-        <item name="fab_colorNormal">@color/primary3</item>
-        <item name="fab_colorPressed">@color/primary2</item>
-        <item name="fab_colorRipple">@color/accent</item>
+        <item name="fab_shadowColor">@color/black_overlay</item>
+        <item name="fab_colorNormal">@color/primary2</item>
+        <item name="fab_colorPressed">@color/colorAccent</item>
+        <item name="fab_colorRipple">@color/colorPrimary</item>
     </style>
 
     <style name="MenuButtonsStyle.2">
-        <item name="fab_colorNormal">@color/primary3_light</item>
+        <item name="fab_colorNormal">@color/primary3</item>
     </style>
 
     <style name="MenuButtonsStyle.3">
@@ -60,18 +38,23 @@
     </style>
 
     <style name="MenuButtonsStyle.4">
-        <item name="fab_colorNormal">@color/accent</item>
+        <item name="fab_colorNormal">@color/primary5</item>
     </style>
 
     <style name="MenuButtonsStyle.5">
-        <item name="fab_colorNormal">@color/accent2</item>
+        <item name="fab_colorNormal">@color/primary6</item>
     </style>
     <style name="MenuLabelsStyle">
-        <item name="android:background">@drawable/fab_label_background</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">14sp</item>
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 </resources>
