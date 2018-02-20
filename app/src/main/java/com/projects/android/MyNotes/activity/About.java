@@ -37,7 +37,7 @@ public class About extends AppCompatActivity {
                 i3.setType("message/rfc822");
                 i3.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
                 i3.putExtra(Intent.EXTRA_SUBJECT, "About Notes App");
-                startActivity(Intent.createChooser(i3, "Chose Mail App"));
+                startActivity(Intent.createChooser(i3, "Choose Mail App"));
             }
         });
         git2.setMovementMethod(LinkMovementMethod.getInstance());
@@ -49,7 +49,7 @@ public class About extends AppCompatActivity {
                 i3.setType("message/rfc822");
                 i3.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
                 i3.putExtra(Intent.EXTRA_SUBJECT, "About Notes App");
-                startActivity(Intent.createChooser(i3, "Chose Mail App"));
+                startActivity(Intent.createChooser(i3, "Choose Mail App"));
             }
         });
     }
