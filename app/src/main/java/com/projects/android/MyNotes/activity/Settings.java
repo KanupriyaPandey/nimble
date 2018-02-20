@@ -31,5 +31,4 @@ public class Settings extends AppCompatActivity {
                     break;
         }
     }
-
 }

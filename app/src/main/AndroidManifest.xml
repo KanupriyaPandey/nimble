@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme">
         <activity
-            android:name=".activity.Home"
-            android:theme="@style/Theme" />
+            android:name=".activity.Home" />
         <activity
             android:name=".activity.About"
-            android:parentActivityName=".activity.Home" />
+            android:parentActivityName=".activity.Home"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.Reminder"
             android:parentActivityName=".activity.Home" />
@@ -32,13 +32,14 @@
             android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Settings"
-            android:parentActivityName=".activity.Home"
-            android:label="@string/Settings"/>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Notes"
             android:parentActivityName=".activity.Home" />
-        <activity android:name=".activity.Notebooks" />
-        <activity android:name=".activity.Trash"></activity>
+        <activity android:name=".activity.Notebooks"
+            android:parentActivityName=".activity.Home"/>
+        <activity android:name=".activity.Trash"
+            android:parentActivityName=".activity.Home"/>
     </application>
 
 </manifest>
