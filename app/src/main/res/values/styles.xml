@@ -1,15 +1,12 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="ThemeOverlay.AppCompat">
-        <!-- Customize your theme here. -->
+    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">@color/primary</item>
-        <item name="colorControlHighlight">@color/primary6</item>
-        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
     </style>
+
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -44,17 +41,12 @@
     <style name="MenuButtonsStyle.5">
         <item name="fab_colorNormal">@color/primary6</item>
     </style>
+
     <style name="MenuLabelsStyle">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">14sp</item>
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar" >
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 </resources>

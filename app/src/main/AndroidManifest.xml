@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme">
         <activity
-            android:name="com.projects.android.MyNotes.activity.Home"
+            android:name=".activity.Home"
             android:theme="@style/Theme" />
         <activity
-            android:name="com.projects.android.MyNotes.activity.About"
-            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+            android:name=".activity.About"
+            android:parentActivityName=".activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.activity.Reminder"
-            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+            android:name=".activity.Reminder"
+            android:parentActivityName=".activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.activity.Splash"
+            android:name=".activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,14 +28,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.projects.android.MyNotes.activity.Account"
-            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+            android:name=".activity.Account"
+            android:parentActivityName=".activity.Home" />
         <activity
-            android:name="com.projects.android.MyNotes.activity.Settings"
-            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
+            android:name=".activity.Settings"
+            android:parentActivityName=".activity.Home"
+            android:label="@string/Settings"/>
         <activity
-            android:name="com.projects.android.MyNotes.activity.Notes"
-            android:parentActivityName="com.projects.android.MyNotes.activity.Home" />
-       </application>
+            android:name=".activity.Notes"
+            android:parentActivityName=".activity.Home" />
+        <activity android:name=".activity.Notebooks" />
+        <activity android:name=".activity.Trash"></activity>
+    </application>
 
 </manifest>

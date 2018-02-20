@@ -2,18 +2,14 @@ package com.projects.android.MyNotes.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.projects.android.MyNotes.R;
 
-public class Account extends AppCompatActivity {
+public class Trash extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acount);
-    }
-
-    public void accountImage(View view) {
+        setContentView(R.layout.activity_trash);
     }
 }

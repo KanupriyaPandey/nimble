@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:htext="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,22 +13,20 @@
         android:id="@+id/splash_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
+        android:layout_centerInParent="true"
         android:src="@mipmap/mynotesicon" />
 
     <com.hanks.htextview.HTextView
         android:id="@+id/htext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp"
         android:fontFamily="casual"
         android:text="My Notes..."
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:textSize="30sp"
+        android:layout_below="@id/splash_icon"
+        android:layout_marginTop="@dimen/padding"
+        android:layout_centerInParent="true"
         htext:animateType="typer" />
 
 </RelativeLayout>
