@@ -183,7 +183,8 @@
                                 android:layout_below="@id/grid"
                                 android:layout_marginTop="@dimen/small_spacing"
                                 android:text="@string/list"
-                                android:textColor="@color/primary2" />
+                                android:textColor="@color/primary2"
+                                android:textSize="@dimen/medium_text"/>
 
                             <RadioGroup
                                 android:id="@+id/radioGroup"
