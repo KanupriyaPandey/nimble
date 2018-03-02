@@ -5,32 +5,23 @@
         <item
             android:id="@+id/nav_notes"
             android:icon="@drawable/ic_edit"
-            android:title="Text Notes" />
+            android:title="@string/notes" />
         <item
             android:id="@+id/nav_notebooks"
             android:icon="@drawable/ic_notebook"
-            android:title="Other Notes" />
-        <item
-            android:id="@+id/nav_reminders"
-            android:icon="@drawable/ic_alarm"
-            android:title="Reminder" />
+            android:title="@string/notebooks" />
         <item
             android:id="@+id/nav_trash"
             android:icon="@drawable/ic_delete"
-            android:title="Trash" />
-    </group>
-
-    <group android:checkableBehavior="single">
+            android:title="@string/trash" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
-            android:title="Settings" />
-
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"
-            android:title="About" />
-
+            android:title="@string/about" />
 
     </group>
 </menu>

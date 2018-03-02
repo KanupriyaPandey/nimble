@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.projects.android.MyNotes.activity.Home">
+    tools:context="com.projects.android.MyNotes.activity.Main">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_home" />
+    <include layout="@layout/content_main" />
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
@@ -85,15 +85,6 @@
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_item4"
-            style="@style/MenuButtonsStyle.4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_alarm"
-            fab:fab_label="@string/reminder" />
-
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item5"
             style="@style/MenuButtonsStyle.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

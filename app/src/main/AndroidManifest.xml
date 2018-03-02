@@ -10,14 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme">
         <activity
-            android:name=".activity.Home" />
+            android:name=".activity.Main" />
         <activity
             android:name=".activity.About"
-            android:parentActivityName=".activity.Home"
+            android:parentActivityName=".activity.Main"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".activity.Reminder"
-            android:parentActivityName=".activity.Home" />
+            android:name=".activity.Account"
+            android:parentActivityName=".activity.Main"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,18 +29,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Account"
-            android:parentActivityName=".activity.Home" />
-        <activity
             android:name=".activity.Settings"
-            android:parentActivityName=".activity.Home" />
+            android:parentActivityName=".activity.Main" />
         <activity
             android:name=".activity.Notes"
-            android:parentActivityName=".activity.Home" />
-        <activity android:name=".activity.Notebooks"
-            android:parentActivityName=".activity.Home"/>
-        <activity android:name=".activity.Trash"
-            android:parentActivityName=".activity.Home"/>
+            android:parentActivityName=".activity.Main" />
     </application>
 
 </manifest>

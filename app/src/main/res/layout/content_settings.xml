@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="@dimen/labels_text_size"
-            android:paddingTop="@dimen/Xlarge_spacing">
+            android:paddingTop="@dimen/default_spacing">
 
             <TextView
                 android:id="@+id/General"
@@ -35,7 +35,7 @@
 
             <!--Account-->
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/about_library_license"
+                android:id="@+id/settings_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/large_spacing"
                     android:layout_toRightOf="@id/account_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
+                    android:paddingBottom="@dimen/default_spacing"
                     android:paddingRight="@dimen/medium_spacing">
 
                     <TextView
@@ -76,52 +76,9 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <!--Reminder-->
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/reminder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/large_spacing">
-
-                <ImageView
-                    android:id="@+id/reminder_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/medium_spacing"
-                    android:padding="@dimen/medium_spacing"
-                    app:srcCompat="@drawable/ic_alarm" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/large_spacing"
-                    android:layout_toRightOf="@id/reminder_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
-                    android:paddingRight="@dimen/medium_spacing">
-
-                    <TextView
-                        android:id="@+id/reminder_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/reminder_title"
-                        android:textColor="@color/primary"
-                        android:textSize="@dimen/medium_text" />
-
-                    <TextView
-                        android:id="@+id/reminder_sub"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/reminder_title"
-                        android:text="@string/reminder_sub"
-                        android:textColor="@color/primary2"
-                        android:textSize="@dimen/medium_text" />
-                </RelativeLayout>
-            </LinearLayout>
-
             <!--View-->
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/view"
+                android:id="@+id/settings_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -140,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/large_spacing"
                     android:layout_toRightOf="@id/view_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
+                    android:paddingBottom="@dimen/default_spacing"
                     android:paddingRight="@dimen/medium_spacing">
 
                     <TextView
@@ -151,38 +108,19 @@
                         android:textColor="@color/primary"
                         android:textSize="@dimen/medium_text" />
 
-                    <TextView
-                        android:id="@+id/grid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/view_title"
-                        android:layout_marginTop="@dimen/small_spacing"
-                        android:text="@string/grid"
-                        android:textColor="@color/primary2"
-                        android:textSize="@dimen/medium_text" />
-
-                    <TextView
-                        android:id="@+id/list"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/grid"
-                        android:layout_marginTop="@dimen/small_spacing"
-                        android:text="@string/list"
-                        android:textColor="@color/primary2"
-                        android:textSize="@dimen/medium_text"/>
-
                     <RadioGroup
                         android:id="@+id/radioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/default_margin">
+                        android:layout_below="@id/view_title">
 
                         <RadioButton
                             android:id="@+id/radio_grid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_spacing"
+                            android:text="@string/grid"
+                            android:textColor="@color/primary2"
+                            android:textSize="@dimen/medium_text"
                             android:checked="true"
                             android:onClick="onRadioButtonClicked" />
 
@@ -190,6 +128,9 @@
                             android:id="@+id/radio_list"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@string/list"
+                            android:textColor="@color/primary2"
+                            android:textSize="@dimen/medium_text"
                             android:layout_marginTop="@dimen/small_spacing"
                             android:onClick="onRadioButtonClicked" />
                     </RadioGroup>
@@ -217,7 +158,7 @@
             android:foreground="@drawable/ripple"
             android:orientation="vertical"
             android:paddingBottom="@dimen/large_spacing"
-            android:paddingTop="@dimen/Xlarge_spacing">
+            android:paddingTop="@dimen/default_spacing">
 
             <TextView
                 android:id="@+id/theme_title"
@@ -251,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/large_spacing"
                     android:layout_toRightOf="@id/base_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
+                    android:paddingBottom="@dimen/default_spacing"
                     android:paddingRight="@dimen/medium_spacing">
 
                     <TextView
@@ -294,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/large_spacing"
                     android:layout_toRightOf="@id/customize_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
+                    android:paddingBottom="@dimen/default_spacing"
                     android:paddingRight="@dimen/medium_spacing">
 
                     <TextView
@@ -337,7 +278,7 @@
             android:foreground="@drawable/ripple"
             android:orientation="vertical"
             android:paddingBottom="@dimen/large_spacing"
-            android:paddingTop="@dimen/Xlarge_spacing">
+            android:paddingTop="@dimen/default_spacing">
 
             <TextView
                 android:id="@+id/advanced_title"
@@ -371,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/large_spacing"
                     android:layout_toRightOf="@id/base_img"
-                    android:paddingBottom="@dimen/Xlarge_spacing"
+                    android:paddingBottom="@dimen/default_spacing"
                     android:paddingRight="@dimen/medium_spacing">
 
                     <TextView

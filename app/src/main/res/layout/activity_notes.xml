@@ -9,32 +9,40 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.projects.android.MyNotes.activity.Notes">
 
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_navigation" />
 
         <EditText
+            android:id="@+id/note_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/large_margin"
+            android:layout_above="@+id/bottom_navigation"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
             android:gravity="top|start"
             android:inputType="textMultiLine"
             android:minLines="40"
-            android:scrollbars="vertical"
-            android:scrollHorizontally="false" />
+            android:padding="10dp"
+            android:scrollHorizontally="false"
+            android:background="@drawable/edittext"
+            android:scrollbars="vertical" />
 
-    </FrameLayout>
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemIconTint="@color/colorPrimary"
+            app:itemTextColor="@color/colorPrimaryDark"
+            app:menu="@menu/bottom_navigation"/>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/colorPrimary"
-        app:itemTextColor="@color/colorPrimaryDark"
-        app:menu="@menu/bottom_navigation"
-        app:itemBackground="@color/white">
-    </android.support.design.widget.BottomNavigationView>
+    </RelativeLayout>
 
 </RelativeLayout>

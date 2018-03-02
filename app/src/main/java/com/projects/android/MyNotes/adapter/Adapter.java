@@ -12,11 +12,7 @@ import com.projects.android.MyNotes.helper.Data;
 
 import java.util.List;
 
-/**
- * Created by kanupriya on 2/7/2018.
- */
-
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<Data> list;
     private Context mContext;
 
@@ -31,13 +27,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         }
     }
 
-    public CardAdapter(Context mContext, List<Data> list) {
+    public Adapter(Context mContext, List<Data> list) {
         this.mContext = mContext;
         this.list = list;
     }
 
     @Override
-    public CardAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card, parent, false);
 

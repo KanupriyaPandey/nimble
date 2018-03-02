@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/list_margin"
+        android:layout_margin="@dimen/item_margin"
         android:elevation="@dimen/card_elevation"
         card_view:cardCornerRadius="@dimen/card_corner_radius">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/list_padding">
+            android:padding="@dimen/item_padding">
 
             <TextView
                 android:id="@+id/title"
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text"
-                android:layout_marginTop="@dimen/list_margin"
+                android:layout_marginTop="@dimen/item_margin"
                 android:padding="@dimen/padding"/>
 
         </RelativeLayout>

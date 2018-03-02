@@ -300,7 +300,7 @@
                 android:foreground="@drawable/ripple"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/large_spacing"
-                android:paddingTop="@dimen/Xlarge_spacing">
+                android:paddingTop="@dimen/default_spacing">
                 <!--ABOUT SUPPORT TITLE-->
                 <TextView
                     android:id="@+id/about_support"
@@ -333,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/large_spacing"
                         android:layout_toRightOf="@id/bug_img"
-                        android:paddingBottom="@dimen/Xlarge_spacing"
+                        android:paddingBottom="@dimen/default_spacing"
                         android:paddingRight="@dimen/medium_spacing">
 
                         <TextView
@@ -375,7 +375,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/large_spacing"
                         android:layout_toRightOf="@id/github_img"
-                        android:paddingBottom="@dimen/Xlarge_spacing"
+                        android:paddingBottom="@dimen/default_spacing"
                         android:paddingRight="@dimen/medium_spacing">
 
                         <TextView
@@ -416,7 +416,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/labels_text_size"
-                android:paddingTop="@dimen/Xlarge_spacing">
+                android:paddingTop="@dimen/default_spacing">
                 <!--ABOUT LICENSE TITLE-->
                 <TextView
                     android:id="@+id/library_license_title"
@@ -448,7 +448,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/large_spacing"
                         android:layout_toRightOf="@id/license_img"
-                        android:paddingBottom="@dimen/Xlarge_spacing"
+                        android:paddingBottom="@dimen/default_spacing"
                         android:paddingRight="@dimen/medium_spacing">
 
                         <TextView
