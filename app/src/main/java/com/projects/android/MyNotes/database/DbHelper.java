@@ -6,9 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
+
+/**
+ * Created by LENOVO on 2/22/2018.
+ */
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DBNAME = "Notes.db";
@@ -54,6 +60,17 @@ public class DbHelper extends SQLiteOpenHelper {
         String[] Column_name = {"Title", "Content", "Date"};
         data = db.query("note", Column_name, null, null, null, null, null);
         return data;
+    }
+    public int updateNote(String Title,String newContent,SQLiteDatabase db)
+    {
+        ContentValues newValues=new ContentValues();
+        newValues.put("Content",newContent);
+        newValues.put("Date",getDateTime());
+        String [] column_name={"Content","Date"};
+        String selection="Title"+" = ?";
+        String [] selcarg={Title};
+        int ret=db.update("note",newValues,selection,selcarg);
+        return ret;
     }
 
     @Override

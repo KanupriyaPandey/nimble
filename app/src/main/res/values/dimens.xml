@@ -4,6 +4,7 @@
     <dimen name="nav_image">120dp</dimen>
     <dimen name="account_image">160dp</dimen>
     <dimen name="fab_margin">12dp</dimen>
+    <dimen name="list_margin">10dp</dimen>
 
     <dimen name="card_corner_radius">2dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
@@ -28,5 +29,11 @@
 
     <dimen name="item_margin">4dp</dimen>
     <dimen name="item_padding">20dp</dimen>
+
+    <dimen name="textViewPad">5dp</dimen>
+    <dimen name="textViewMarg">10dp</dimen>
+    <dimen name="DateSize">12sp</dimen>
+    <dimen name="TitleSize">20sp</dimen>
+    <dimen name="TextSize">14sp</dimen>
 
 </resources>

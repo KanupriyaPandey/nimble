@@ -23,21 +23,29 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:lines="1"
-                android:padding="@dimen/padding"/>
+                android:textStyle="bold"
+                android:fontFamily="serif-monospace"
+                android:textSize="@dimen/TitleSize"
+                android:padding="@dimen/textViewPad"/>
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"/>
+                android:layout_below="@+id/title"
+                android:fontFamily="serif-monospace"
+                android:textSize="@dimen/TextSize"
+                android:padding="@dimen/textViewPad"/>
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text"
+                android:fontFamily="serif-monospace"
                 android:layout_marginTop="@dimen/item_margin"
-                android:padding="@dimen/padding"/>
+                android:textSize="12sp"
+                android:padding="@dimen/textViewPad"/>
 
         </RelativeLayout>
 
