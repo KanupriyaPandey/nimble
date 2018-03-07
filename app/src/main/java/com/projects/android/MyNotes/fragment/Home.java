@@ -16,11 +16,12 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.projects.android.MyNotes.activity.Preview;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.R;
-import com.projects.android.MyNotes.activity.Notes;
 import com.projects.android.MyNotes.adapter.Adapter;
 import com.projects.android.MyNotes.helper.Data;
 import com.projects.android.MyNotes.listener.FragmentInteraction;
@@ -28,6 +29,8 @@ import com.projects.android.MyNotes.listener.RecyclerTouch;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 public class Home extends Fragment {
     private FragmentInteraction listener;
@@ -38,11 +41,12 @@ public class Home extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     public List<Data> list;
+    public int position;
 
     public Home() {
     }
 
-    public static Home newInstance(String param1, String param2) {
+    public static Home newInstance(String param1, String param2) {   //??
         Home fragment=new Home();
         return fragment;
     }
@@ -60,6 +64,7 @@ public class Home extends Fragment {
         db=help.getReadableDatabase();
         list = new ArrayList<>();
         adapter = new Adapter(getActivity(), list);
+        ButterKnife.bind(getActivity());      //To allow bottom sheets functionality
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getActivity());
         if(!sharedPreferences.contains("k"))   //To check if the application is opened for the first time or not.
         {
@@ -77,20 +82,17 @@ public class Home extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouch(getContext(), recyclerView, new RecyclerTouch.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Data data = list.get(position);
-                Intent i=new Intent(getContext(), Notes.class);
+
+                //Data data = list.get(position);
+                Intent i=new Intent(getContext(), Preview.class);
                 String k1="v1";
                 i.putExtra(k1,String.valueOf(position));   //To pass the position of the selected card across the intent.
                 startActivity(i);
-                SharedPreferences preferences=PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor edit = preferences.edit(); //Just coz i like using shared preferences now.
-                edit.putBoolean("Update",true);
-                edit.apply();
             }
 
             @Override
             public void onLongClick(View view, int position) {
-
+                showBottomSheetDialogFragment(position);
             }
         }));
         try {
@@ -102,6 +104,7 @@ public class Home extends Fragment {
         }
         return view;
     }
+
     public void viewChange(View view) {
         switch (sharedPreferences.getString("k","")) {
             case "Grid": {
@@ -123,13 +126,22 @@ public class Home extends Fragment {
                     recyclerView.setAdapter(adapter);
                     break;
                 } catch (Exception e) {
-                    break;
-
+                    Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
                 }
             }
         }
     }
-
+    public void showBottomSheetDialogFragment(int position) {
+        try {
+            this.position=position;
+            BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+            bottomSheetFragment.show(getActivity().getSupportFragmentManager(), bottomSheetFragment.getTag());
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
+        }
+    }
     public void onButtonPressed(Uri uri) {
         if (listener != null) {
             listener.onFragmentInteraction(uri);
@@ -160,6 +172,16 @@ public class Home extends Fragment {
         if(note.moveToLast())
         {
             do {
+                if(note.getString(1).length()==0)
+                {
+                    try {
+                        help.delete(note.getString(0), db);
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
+                    }
+                }
                 String Content="";
                 int i=0;
                 do

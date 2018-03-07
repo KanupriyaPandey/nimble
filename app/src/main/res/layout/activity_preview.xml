@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.projects.android.MyNotes.activity.Preview">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/displayNote"
+        android:fontFamily="serif-monospace"
+        android:padding="@dimen/medium_spacing"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_marginRight="@dimen/vlarge_margin"
+        android:layout_marginLeft="@dimen/vlarge_margin"
+        android:background="@drawable/edittext" />
+
+</android.support.constraint.ConstraintLayout>
