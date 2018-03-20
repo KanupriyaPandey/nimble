@@ -1,6 +1,7 @@
 package com.projects.android.MyNotes.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
+import com.projects.android.MyNotes.activity.Main;
 import com.projects.android.MyNotes.adapter.Adapter;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.database.Dbhelper2;
@@ -102,24 +104,29 @@ public class Trash extends Fragment {
     private void prepareAlbums() {
         Cursor note=help.getAll(db);
         if(note.moveToLast())
-        {
-            do {
-                String Content="";
-                int i=0;
-                do
-                {
-                    Content+=note.getString(1).charAt(i);
-                    i++;
-                }
-                while (i<note.getString(1).length()&&i<50);
-                if(i>=50)
-                {
-                    Content+="....";
-                }
-                Data a=new Data(note.getString(0),Content,note.getString(2));
-                list.add(a);
+        {if ((note.getString(0).length() == 0)||(note.getString(1).length() == 0)||(note.getString(1).length() == 1)) {
+            try{    Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
+                    list.add(a);
+            } catch (Exception e) {
+                Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
             }
-            while(note.moveToPrevious());
+        } else {
+                do {
+                    String Content = "";
+                    int i = 0;
+                    do {
+                        Content += note.getString(1).charAt(i);
+                        i++;
+                    }
+                    while (i < note.getString(1).length() && i < 50);
+                    if (i >= 50) {
+                        Content += "....";
+                    }
+                    Data a = new Data(note.getString(0), Content, note.getString(2));
+                    list.add(a);
+                }
+                while (note.moveToPrevious());
+            }
         }
             adapter.notifyDataSetChanged();
     }

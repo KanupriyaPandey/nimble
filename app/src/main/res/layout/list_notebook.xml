@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/large_margin">
+    <TextView
+        android:id="@+id/name_notebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:fontFamily="serif-monospace"
+        android:paddingBottom="@dimen/thin_padding"
+        android:paddingLeft="@dimen/thin_padding"
+        android:layout_marginLeft="@dimen/medium_spacing"
+        android:textStyle="bold"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:paddingTop="@dimen/thin_padding"
+        android:textSize="@dimen/TitleSize" />
+</RelativeLayout>

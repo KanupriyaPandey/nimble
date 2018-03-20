@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.projects.android.MyNotes.activity.Main;
 import com.projects.android.MyNotes.activity.Preview;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.R;
@@ -41,7 +42,7 @@ public class Home extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     public List<Data> list;
-    public int position;
+    public static int select;   //To save the value of the position of the note that has been selected
 
     public Home() {
     }
@@ -82,8 +83,6 @@ public class Home extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouch(getContext(), recyclerView, new RecyclerTouch.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-                //Data data = list.get(position);
                 Intent i=new Intent(getContext(), Preview.class);
                 String k1="v1";
                 i.putExtra(k1,String.valueOf(position));   //To pass the position of the selected card across the intent.
@@ -133,7 +132,7 @@ public class Home extends Fragment {
     }
     public void showBottomSheetDialogFragment(int position) {
         try {
-            this.position=position;
+            this.select=position;
             BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
             bottomSheetFragment.show(getActivity().getSupportFragmentManager(), bottomSheetFragment.getTag());
         }
@@ -169,35 +168,31 @@ public class Home extends Fragment {
 
     private void prepareAlbums() {
         Cursor note=help.getAll(db);
-        if(note.moveToLast())
-        {
+        if(note.moveToLast()) {
             do {
-                if(note.getString(1).length()==0)
-                {
-                    try {
-                        help.delete(note.getString(0), db);
-                    }
-                    catch (Exception e)
-                    {
+                if ((note.getString(0).length() == 0)||(note.getString(1).length() == 0)) {
+                    try {   Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
+                            list.add(a);
+                    } catch (Exception e) {
                         Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
                     }
                 }
-                String Content="";
-                int i=0;
-                do
-                {
-                    Content+=note.getString(1).charAt(i);
-                    i++;
+                else {
+                    String Content = "";
+                    int i = 0;
+                    do {
+                        Content += note.getString(1).charAt(i);
+                        i++;
+                    }
+                    while (i < note.getString(1).length() && i < 50);
+                    if (i >= 50) {
+                        Content += "....";
+                    }
+                    Data a = new Data(note.getString(0), Content, note.getString(2));
+                    list.add(a);
                 }
-                while (i<note.getString(1).length()&&i<50);
-                if(i>=50)
-                {
-                    Content+="....";
-                }
-                Data a=new Data(note.getString(0),Content,note.getString(2));
-                list.add(a);
             }
-            while(note.moveToPrevious());
+                while (note.moveToPrevious()) ;
         }
         if(sharedPreferences.getString("k","").equals("Grid"))
             adapter.notifyDataSetChanged();

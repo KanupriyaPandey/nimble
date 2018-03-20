@@ -4,22 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.projects.android.MyNotes.fragment.Trash">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/large_margin"
-    android:padding="@dimen/padding"
-    android:layout_alignParentTop="true"
-    android:layout_centerVertical="true"
-    android:textSize="@dimen/TitleSize"
-    android:fontFamily="serif-monospace"
-    android:textStyle="bold"
-    android:text="@string/trash"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_trash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vlarge_margin"
+        android:layout_marginTop="@dimen/large_margin"
         android:clipToPadding="false"
         android:scrollbars="vertical" />
 

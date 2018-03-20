@@ -12,18 +12,16 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-/**
- * Created by LENOVO on 2/22/2018.
- */
-
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DBNAME = "Notes.db";
     private static final int DBVERSION = 1;
-    public static final String tbquery = "create table note(" +
-            "Title text primary key," +
-            "Content text,"
+    public static final String tbquery = "create table note("
+            + "Title text,"
+            + "Content text,"
             + "Date text,"
-            + "image blob)";
+            + "image blob,"
+            +"Id integer primary key autoincrement,"
+            +"Notebook text)";
 
     public DbHelper(Context context) {
         super(context, DBNAME, null, DBVERSION); //Database Created
@@ -32,7 +30,6 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(tbquery);
-        System.out.println("Table Created");
     }
 
     private String getDateTime() {
@@ -57,25 +54,35 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getAll(SQLiteDatabase db) {
         Cursor data;
-        String[] Column_name = {"Title", "Content", "Date"};
+        String[] Column_name = {"Title", "Content", "Date","Id","Notebook"};
         data = db.query("note", Column_name, null, null, null, null, null);
         return data;
     }
-    public int updateNote(String Title,String newContent,SQLiteDatabase db)
+    public int updateNote(String id,String newTitle,String newContent,SQLiteDatabase db)
     {
         ContentValues newValues=new ContentValues();
+        newValues.put("Title",newTitle);
         newValues.put("Content",newContent);
         newValues.put("Date",getDateTime());
-        String [] column_name={"Content","Date"};
-        String selection="Title"+" = ?";
-        String [] selcarg={Title};
+        String [] column_name={"Title","Content","Date"};
+        String selection="Id"+" like ?";
+        String [] selcarg={id};
         int ret=db.update("note",newValues,selection,selcarg);
         return ret;
     }
-    public void delete(String Title,SQLiteDatabase db)
+    public void updateNotebook(String id,String Notebook,SQLiteDatabase db)
     {
-        String selection="Title "+"like ?";
-        String []selcargs={Title};
+        ContentValues newValues=new ContentValues();
+        newValues.put("Notebook",Notebook);
+        String [] column_name={"Notebook"};
+        String selection="Id"+" like ?";
+        String [] selcarg={id};
+        db.update("note",newValues,selection,selcarg);
+    }
+    public void delete(String id,SQLiteDatabase db)
+    {
+        String selection="Id "+"like ?";
+        String []selcargs={id};
         db.delete("note",selection,selcargs);
     }
 

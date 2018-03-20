@@ -28,6 +28,7 @@ public class Notes extends AppCompatActivity {
     SQLiteDatabase dbRead;
     int position;
     String primary_title;
+    int id;
     SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,54 +77,12 @@ public class Notes extends AppCompatActivity {
             }
         }
         primary_title=data.getString(0);
+        id=data.getInt(3);
         String Contents=data.getString(0)+"\n"+data.getString(1);
         notes.setText(Contents);
     }
-    public void updateNote(int position)    //Updating the saved notes
+    public void updateNote()    //Updating the saved notes
     {
-        String Content = notes.getText().toString();
-        if (Content.equals("")) {
-            super.onBackPressed();
-        }
-        else
-        {
-            String content = "";
-            int p = 0;
-            do {
-                if (Content.charAt(p) == '\n') {
-                    p++;
-                    do {
-                        content += Content.charAt(p);
-                        p++;
-                    }
-                    while (p < Content.length());
-                }
-                p++;
-            }
-            while (p < Content.length());
-            try {
-                int success = help.updateNote(primary_title, content, db);
-                if (success > 0) {
-                    Toast.makeText(getApplicationContext(), primary_title+" Update Success", Toast.LENGTH_SHORT).show();
-                }
-            }
-            catch (Exception e)
-            {
-                Toast.makeText(this, String.valueOf(e), Toast.LENGTH_LONG).show();
-            }
-            Intent i = new Intent(getApplicationContext(), Main.class);
-            startActivity(i);
-        }
-    }
-    @Override
-    public void onBackPressed() {
-        if(preferences.contains("Update"))
-        {
-            SharedPreferences.Editor editor=preferences.edit();
-            editor.remove("Update");
-            editor.apply();
-            updateNote(position);
-        }
         String Content = notes.getText().toString();
         if (Content.equals("")) {
             super.onBackPressed();
@@ -147,14 +106,56 @@ public class Notes extends AppCompatActivity {
                 p++;
             }
             while (p < Content.length());
-            help.addInfo(Title, content, db);
             try {
-                Intent i = new Intent(getApplicationContext(), Main.class);
-                startActivity(i);
+                int success = help.updateNote(String.valueOf(id),Title, content, db);
+                if (success > 0) {
+                    Toast.makeText(getApplicationContext(), primary_title+" Update Success", Toast.LENGTH_SHORT).show();
+                }
             }
             catch (Exception e)
             {
-                Toast.makeText(this, "DataBase"+String.valueOf(e), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, String.valueOf(e), Toast.LENGTH_LONG).show();
+            }
+            Intent i = new Intent(getApplicationContext(), Main.class);
+            startActivity(i);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        if (preferences.contains("Update")) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.remove("Update");
+            editor.apply();
+            updateNote();
+        } else {
+            String Content = notes.getText().toString();
+            if (Content.equals("")) {
+                super.onBackPressed();
+            } else {
+                String Title = "";
+                String content = "";
+                int p = 0;
+                do {
+                    if (Content.charAt(p) == '\n') {
+                        p++;
+                        do {
+                            content += Content.charAt(p);
+                            p++;
+                        }
+                        while (p < Content.length());
+                    } else {
+                        Title = Title + Content.charAt(p);
+                    }
+                    p++;
+                }
+                while (p < Content.length());
+                help.addInfo(Title, content, db);
+                try {
+                    Intent i = new Intent(getApplicationContext(), Main.class);
+                    startActivity(i);
+                } catch (Exception e) {
+                    Toast.makeText(this, "DataBase" + String.valueOf(e), Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

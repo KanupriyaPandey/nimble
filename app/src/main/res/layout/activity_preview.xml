@@ -15,10 +15,19 @@
         android:id="@+id/displayNote"
         android:fontFamily="serif-monospace"
         android:padding="@dimen/medium_spacing"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:layout_marginRight="@dimen/vlarge_margin"
-        android:layout_marginLeft="@dimen/vlarge_margin"
-        android:background="@drawable/edittext" />
+        android:layout_margin="@dimen/large_margin"
+        android:textSize="@dimen/TitleSize"
+        android:background="@drawable/edittext"
+        android:clickable="true"
+        android:focusable="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/editNote"
+        android:fontFamily="monospace"
+        android:paddingLeft="@dimen/medium_spacing"
+        android:layout_margin="@dimen/large_margin"
+        android:background="@drawable/edittext"
+        android:visibility="gone"/>
 
 </android.support.constraint.ConstraintLayout>

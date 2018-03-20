@@ -76,5 +76,6 @@
     <string name="Delete">Delete</string>
     <string name="Mail">Mail</string>
     <string name="Notebook">Add to NoteBook</string>
+    <string name="create_new_notebook">Create New NoteBook</string>
 
 </resources>
