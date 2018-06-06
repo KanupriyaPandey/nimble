@@ -19,12 +19,12 @@ import com.projects.android.MyNotes.activity.Main;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.database.Dbhelper2;
 
-public class BottomSheet extends BottomSheetDialogFragment{
+public class BottomSheetMain extends BottomSheetDialogFragment{
     DbHelper help;
     SQLiteDatabase db2;
     Dbhelper2 dbhelper2;
     SQLiteDatabase db;
-    public BottomSheet(){
+    public BottomSheetMain(){
 
     }
     @Override

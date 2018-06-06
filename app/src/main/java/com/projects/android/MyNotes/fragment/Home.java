@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -104,7 +103,7 @@ public class Home extends Fragment {
     public void showBottomSheetDialog(int position) {
         try {
             Home.select = position;
-            new BottomSheet().show(getActivity().getSupportFragmentManager(), "BottomSheet");
+            new BottomSheetMain().show(getActivity().getSupportFragmentManager(), "BottomSheet");
         } catch (Exception e) {
             Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
         }

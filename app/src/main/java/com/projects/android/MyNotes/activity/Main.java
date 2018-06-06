@@ -42,15 +42,17 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         dbhelper2=new Dbhelper2(getApplicationContext());
         help=new DbHelper(getApplicationContext());
         db2=help.getReadableDatabase();
         db=dbhelper2.getWritableDatabase();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         View navHeader = navigationView.getHeaderView(0);
-        final ImageView imageProfile = (ImageView) navHeader.findViewById(R.id.nav_image);
+        final ImageView imageProfile = navHeader.findViewById(R.id.nav_image);
         imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,43 +63,45 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 }
             }
         });
-        final FloatingActionButton camera=(FloatingActionButton)findViewById(R.id.menu_item);
-        final FloatingActionButton audio=(FloatingActionButton)findViewById(R.id.menu_item2);
-        final FloatingActionButton attachment=(FloatingActionButton)findViewById(R.id.menu_item3);
-        final FloatingActionButton text=(FloatingActionButton)findViewById(R.id.menu_item4);
-        text.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.menu_item5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 text();
             }
         });
-        attachment.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.menu_item4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attachment();
             }
         });
-        audio.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.menu_item3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 audio();
             }
         });
-        camera.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.menu_item2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image();
+            }
+        });
+        findViewById(R.id.menu_item).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camera();
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        displayFragment(R.id.nav_notes); //To display the notes(home) fragment at on create.
+        displayFragment(R.id.nav_notes);
     }
 
     private void camera() {
@@ -167,16 +171,16 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             Intent i6 = new Intent(getApplicationContext(), Settings.class);
             startActivity(i6);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void displayFragment(int itemId){
-        Fragment fragment = null;  //Data Abstraction; fragment is the parent class which is called by the constructor of the Home,Notebooks etc.
+        Fragment fragment = null;
          switch (itemId) {
             case R.id.nav_notes:
-                fragment = new Home(); //Initiate the fragment
+                fragment = new Home();
                 break;
             case R.id.nav_notebooks:
                 fragment = new Notebooks();
@@ -191,7 +195,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE );
             ft.commit();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
     @Override
