@@ -24,9 +24,13 @@ public class About extends AppCompatActivity {
         gmail = (TextView) findViewById(R.id.mail);
         git2 = (TextView) findViewById(R.id.github2);
         gmail2 = (TextView) findViewById(R.id.mail2);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.about_toolbar);
         setSupportActionBar(toolbar);
         initCollapsingToolbar();
+       // CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_about);
+       // collapsingToolbarLayout.setTitle("About");
+       // collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
         git.setMovementMethod(LinkMovementMethod.getInstance());
         gmail.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +44,7 @@ public class About extends AppCompatActivity {
                 startActivity(Intent.createChooser(i3, "Choose Mail App"));
             }
         });
+
         git2.setMovementMethod(LinkMovementMethod.getInstance());
         gmail2.setOnClickListener(new View.OnClickListener() {
             @Override

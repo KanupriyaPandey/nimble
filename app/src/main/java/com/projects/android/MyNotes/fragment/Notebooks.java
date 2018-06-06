@@ -1,7 +1,6 @@
 package com.projects.android.MyNotes.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,12 +20,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.projects.android.MyNotes.R;
-import com.projects.android.MyNotes.activity.Main;
+import com.projects.android.MyNotes.adapter.CardAdapter;
 import com.projects.android.MyNotes.adapter.Adapter;
-import com.projects.android.MyNotes.adapter.Adapter2;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.helper.Data;
-import com.projects.android.MyNotes.listener.FragmentInteraction;
+import com.projects.android.MyNotes.listener.OnFragmentInteraction;
 import com.projects.android.MyNotes.listener.RecyclerTouch;
 
 import java.util.ArrayList;
@@ -35,10 +33,9 @@ import java.util.List;
 
 public class Notebooks extends Fragment {
 
-    private FragmentInteraction listener;
     public RecyclerView recyclerView;
-    Adapter adapter;
-    Adapter2 adapter2;
+    CardAdapter cardAdapter;
+    Adapter adapter2;
     int k = 0;
     AlertDialogFragment dialogFragment;
     public List<String> list_name;
@@ -47,6 +44,7 @@ public class Notebooks extends Fragment {
     SQLiteDatabase db;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    private OnFragmentInteraction onFragmentInteraction;
 
     public Notebooks() {
     }
@@ -65,6 +63,9 @@ public class Notebooks extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notebooks, container, false);
+        if (onFragmentInteraction != null) {
+            onFragmentInteraction.setActionBarTitle("Notebooks");
+        }
         dialogFragment = new AlertDialogFragment();
         help = new DbHelper(getActivity());
         db = help.getReadableDatabase();
@@ -91,25 +92,30 @@ public class Notebooks extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouch(getContext(), recyclerView, new RecyclerTouch.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                editor.putString("name",String.valueOf(list_name.get(position)));
-                editor.apply();
-                try {
+                if(sharedPreferences.contains("name")) {
+                    editor.putString("name", String.valueOf(list_name.get(position)));
+                    editor.apply();
+                    try {
                         Fragment fragment_replace = new Notebooks();
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.content_frame, fragment_replace);
-                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE );
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
                         ft.commit();
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), String.valueOf(e), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                catch(Exception e)
+                else
                 {
-                    Toast.makeText(getActivity(), String.valueOf(e), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onLongClick(View view, int position) {
-
+                    BottomSheetNotebooks bottomSheetNotebooks=new BottomSheetNotebooks();
+                    bottomSheetNotebooks.show(getActivity().getSupportFragmentManager(),bottomSheetNotebooks.getTag());
             }
         }));
         return view;
@@ -126,7 +132,7 @@ public class Notebooks extends Fragment {
                 String[] note = gson.fromJson(Note_list, String[].class);
                 List<String> list1 = Arrays.asList(note);
                 list_name = new ArrayList<>(list1); //Getting the list that is saved in shared preferences
-                adapter2 = new Adapter2(getContext(), list_name);
+                adapter2 = new Adapter(getContext(), list_name);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setHasFixedSize(true);
@@ -136,36 +142,15 @@ public class Notebooks extends Fragment {
                else
         {
                 recyclerView = (RecyclerView) view.findViewById(R.id.Notebooks);
-                adapter = new Adapter(getContext(), list);
+                cardAdapter = new CardAdapter(getContext(), list);
                 StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(adapter);
+                recyclerView.setAdapter(cardAdapter);
                 prepareAlbums();
                 editor.remove("name"); //Removing the shared prefrences after setting it once.
                 editor.apply();
         }
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (listener != null) {
-            listener.onFragmentInteraction(uri);
-        }
-    }
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FragmentInteraction) {
-            listener = (FragmentInteraction) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
     }
     private void prepareAlbums() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -199,7 +184,24 @@ public class Notebooks extends Fragment {
                 }
             while (note.moveToPrevious());
         }
-        adapter.notifyDataSetChanged();
+        cardAdapter.notifyDataSetChanged();
     }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteraction) {
+            onFragmentInteraction = (OnFragmentInteraction) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        onFragmentInteraction = null;
+    }
+
 }
 

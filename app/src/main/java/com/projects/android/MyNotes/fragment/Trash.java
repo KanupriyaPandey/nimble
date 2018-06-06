@@ -1,7 +1,6 @@
 package com.projects.android.MyNotes.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -16,12 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
-import com.projects.android.MyNotes.activity.Main;
-import com.projects.android.MyNotes.adapter.Adapter;
-import com.projects.android.MyNotes.database.DbHelper;
+import com.projects.android.MyNotes.adapter.CardAdapter;
 import com.projects.android.MyNotes.database.Dbhelper2;
 import com.projects.android.MyNotes.helper.Data;
-import com.projects.android.MyNotes.listener.FragmentInteraction;
+import com.projects.android.MyNotes.listener.OnFragmentInteraction;
 import com.projects.android.MyNotes.listener.RecyclerTouch;
 
 import java.util.ArrayList;
@@ -30,16 +27,14 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 public class Trash extends Fragment {
-    /*private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;*/
-    private FragmentInteraction listener;
-    public Adapter adapter;
+    public CardAdapter cardAdapter;
     public RecyclerView recyclerView;
+    private OnFragmentInteraction onFragmentInteraction;
     SQLiteDatabase db;
     Dbhelper2 help;
     public List<Data> list;
+    static int select;
+    BottomSheetTrash trash;
     public Trash(){
     }
 
@@ -49,13 +44,15 @@ public class Trash extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_trash, container, false);
+        if (onFragmentInteraction != null) {
+            onFragmentInteraction.setActionBarTitle("Trash");
+        }
+        trash=new BottomSheetTrash();
         ButterKnife.bind(getActivity());
         try {
             list = new ArrayList<>();
@@ -70,9 +67,9 @@ public class Trash extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouch(getActivity(), recyclerView, new RecyclerTouch.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                select=position;
+                trash.show(getActivity().getSupportFragmentManager(), trash.getTag());
             }
-
             @Override
             public void onLongClick(View view, int position) {
 
@@ -87,31 +84,27 @@ public class Trash extends Fragment {
                 }
         return view;
     }
-    public void onButtonPressed(Uri uri) {
-        if (listener != null) {
-            listener.onFragmentInteraction(uri);
-        }
-    }
     public void viewChange(View view)
     {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_trash);
-        adapter = new Adapter(getContext(), list);
+        cardAdapter = new CardAdapter(getContext(), list);
         StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(cardAdapter);
     }
     private void prepareAlbums() {
         Cursor note=help.getAll(db);
-        if(note.moveToLast())
-        {if ((note.getString(0).length() == 0)||(note.getString(1).length() == 0)||(note.getString(1).length() == 1)) {
-            try{    Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
-                    list.add(a);
-            } catch (Exception e) {
-                Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
-            }
-        } else {
-                do {
+        if(note.moveToLast()) {
+            do {
+                if ((note.getString(0).length() == 0)||(note.getString(1).length() == 0)) {
+                    try {   Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
+                        list.add(a);
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
                     String Content = "";
                     int i = 0;
                     do {
@@ -125,17 +118,17 @@ public class Trash extends Fragment {
                     Data a = new Data(note.getString(0), Content, note.getString(2));
                     list.add(a);
                 }
-                while (note.moveToPrevious());
             }
+            while (note.moveToPrevious()) ;
         }
-            adapter.notifyDataSetChanged();
+            cardAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof FragmentInteraction) {
-            listener = (FragmentInteraction) context;
+        if (context instanceof OnFragmentInteraction) {
+            onFragmentInteraction = (OnFragmentInteraction) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -145,7 +138,7 @@ public class Trash extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+        onFragmentInteraction = null;
     }
 
 }

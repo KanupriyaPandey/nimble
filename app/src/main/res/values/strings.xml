@@ -77,5 +77,10 @@
     <string name="Mail">Mail</string>
     <string name="Notebook">Add to NoteBook</string>
     <string name="create_new_notebook">Create New NoteBook</string>
+    <string name="restore">Restore</string>
+    <string name="remove">Remove</string>
+    <string name="date">Date</string>
+    <string name="done">Done</string>
+    <string name="empty_bin">Empty Bin</string>
 
 </resources>

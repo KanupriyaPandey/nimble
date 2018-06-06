@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f50057</color>
-    <color name="colorPrimaryDark">#f50057</color>
-    <color name="colorAccent">#b3001b</color>
-    <color name="primary">#011627</color>
-    <color name="primaryLight">#092f59</color>
-    <color name="primary2">#0EB1D2</color>
-    <color name="primary3">#1B9AAA</color>
-    <color name="primary4">#2DE1FC</color>
-    <color name="primary5">#41D3BD</color>
-    <color name="primary6">#5BC0BE</color>
+    <!--Default Theme-->
+    <color name="colorPrimaryDark">#B3001B</color>
+    <color name="colorPrimary">#F50057</color>
+    <color name="colorAccent">#02182B</color>
+    <!--Text color-->
+    <color name="accent">#0EB1D2</color>
+    <!--Menu button-->
+    <color name="primary">#880E4F</color>
+    <color name="primary2">#FF4081</color>
+    <color name="primary3">#F50057</color>
+    <color name="primary4">#B3001C</color>
+    <color name="primary5">#FF5252</color>
+    <color name="primary6">#FF5252</color>
+    <color name="primaryLight">#0EB1D2</color>
+
+    <!--Green Theme-->
+    <color name="GcolorPrimaryDark">#0D1205</color>
+    <color name="GcolorPrimary">#61892F</color>
+    <color name="GcolorAccent">#25350E</color>
+    <!--Text color-->
+    <color name="Gaccent">#86C232</color>
+    <!--Menu button-->
+    <color name="Gprimary">#314713</color>
+    <color name="Gprimary2">#41611C</color>
+    <color name="Gprimary3">#71B12E</color>
+    <color name="Gprimary4">#91C744</color>
+
+    <!--Pop Theme-->
+    <color name="PcolorPrimaryDark">#0D1205</color>
+    <color name="PcolorPrimary">#61892F</color>
+    <color name="PcolorAccent">#86C232</color>
+    <!--Text color-->
+    <color name="Paccent">#0EB1D2</color>
+    <!--Menu button-->
+    <color name="Pprimary">#004D40</color>
+    <color name="Pprimary2">#006064</color>
+    <color name="Pprimary3">#E65100</color>
+    <color name="Pprimary4">#29B6F6</color>
+
     <color name="black_overlay">#66c9b6b6</color>
     <color name="white">#FDFFFC</color>
+    <color name="dark">#474B4F</color>
+    <!--Icons color-->
+    <color name="richBlack">#000022</color>
+
 </resources>

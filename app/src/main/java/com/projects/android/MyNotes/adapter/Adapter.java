@@ -8,26 +8,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.projects.android.MyNotes.R;
-import com.projects.android.MyNotes.helper.Data;
 
 import java.util.List;
 
+
+
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-    private List<Data> list;
+    private List<String> list;
     private Context mContext;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, text, date;
+        public TextView name_notebook;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            text = (TextView) view.findViewById(R.id.text);
-            date = (TextView) view.findViewById(R.id.date);
+            name_notebook = (TextView) view.findViewById(R.id.name_notebook);
         }
     }
 
-    public Adapter(Context mContext, List<Data> list) {
+    public Adapter(Context mContext, List<String> list) {
         this.mContext = mContext;
         this.list = list;
     }
@@ -35,17 +34,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card, parent, false);
+                .inflate(R.layout.list_notebook, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Data details = list.get(position);
-        holder.title.setText(details.getTitle());
-        holder.text.setText(details.getText());
-        holder.date.setText(details.getDate());
+        String details = list.get(position);
+        holder.name_notebook.setText(details);
     }
 
     @Override

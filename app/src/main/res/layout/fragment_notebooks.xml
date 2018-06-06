@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.projects.android.MyNotes.fragment.Notebooks">
+
     <FrameLayout
         android:id="@+id/note_frame"
         android:layout_width="match_parent"
@@ -12,9 +13,10 @@
             android:id="@+id/Notebooks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/thin_padding"
+            android:layout_marginTop="@dimen/large_margin"
             android:paddingBottom="@dimen/thin_padding"
-            android:layout_marginTop="@dimen/large_margin"/>
+            android:paddingTop="@dimen/thin_padding" />
+
     </FrameLayout>
 
 </RelativeLayout>

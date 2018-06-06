@@ -184,7 +184,7 @@
                         android:layout_height="96dp"
                         android:layout_marginLeft="@dimen/small_spacing"
                         android:layout_marginTop="105dp"
-                        android:src="@drawable/profile_image"
+                        android:src="@drawable/profile_image2"
                         app:civ_border_color="@color/black_overlay"
                         app:civ_border_width="@dimen/size" />
 

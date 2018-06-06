@@ -16,12 +16,13 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DBNAME = "Notes.db";
     private static final int DBVERSION = 1;
     public static final String tbquery = "create table note("
-            + "Title text,"
-            + "Content text,"
-            + "Date text,"
-            + "image blob,"
+            +"Title text,"
+            +"Content text,"
+            +"Date text,"
+            +"image blob,"
             +"Id integer primary key autoincrement,"
-            +"Notebook text)";
+            +"Notebook text,"
+            +"Background integer)";
 
     public DbHelper(Context context) {
         super(context, DBNAME, null, DBVERSION); //Database Created
@@ -34,18 +35,19 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "dd-MM-yyyy HH:mm:ss", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }
 
-    public void addInfo(String title, String content, SQLiteDatabase db) {
+    public void addInfo(String title, String content, String background, SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         try {
             cv.put("Title", title);
             cv.put("Content", content);
             cv.put("Date", getDateTime());
             //cv.put("Image",image);
+            cv.put("Background", background);
             db.insert("note", null, cv);
         } catch (Exception exp) {
             System.out.println(exp.toString());
@@ -54,21 +56,21 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public Cursor getAll(SQLiteDatabase db) {
         Cursor data;
-        String[] Column_name = {"Title", "Content", "Date","Id","Notebook"};
+        String[] Column_name = {"Title", "Content", "Date","Id","Notebook","Background"};
         data = db.query("note", Column_name, null, null, null, null, null);
         return data;
     }
-    public int updateNote(String id,String newTitle,String newContent,SQLiteDatabase db)
+    public void updateNote(String id,String newTitle, String newContent, String background, SQLiteDatabase db)
     {
         ContentValues newValues=new ContentValues();
         newValues.put("Title",newTitle);
         newValues.put("Content",newContent);
         newValues.put("Date",getDateTime());
+        newValues.put("Background", background);
         String [] column_name={"Title","Content","Date"};
         String selection="Id"+" like ?";
         String [] selcarg={id};
-        int ret=db.update("note",newValues,selection,selcarg);
-        return ret;
+        db.update("note",newValues,selection,selcarg);
     }
     public void updateNotebook(String id,String Notebook,SQLiteDatabase db)
     {
@@ -88,5 +90,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
     }
+
 }

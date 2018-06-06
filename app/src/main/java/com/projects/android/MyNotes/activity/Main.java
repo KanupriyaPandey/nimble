@@ -1,51 +1,38 @@
 package com.projects.android.MyNotes.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.database.Dbhelper2;
-import com.projects.android.MyNotes.fragment.AlertDialogFragment;
+import com.projects.android.MyNotes.fragment.BottomSheetTrash;
 import com.projects.android.MyNotes.fragment.Home;
 import com.projects.android.MyNotes.fragment.Notebooks;
 import com.projects.android.MyNotes.fragment.Trash;
-import com.projects.android.MyNotes.listener.FragmentInteraction;
+import com.projects.android.MyNotes.listener.OnFragmentInteraction;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.OnClick;
-
-public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, FragmentInteraction {
-    private NavigationView navigationView;
-    private View navHeader;
-    private ImageView imgProfile;
+public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteraction {
+    private final int REQUEST_IMAGE_PICK = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 2;
+    static final int REQUEST_AUDIO_ATTACHMENT = 3;
+    static final int REQUEST_FILE_ATTACHMENT = 4;
+    String photoPath;
     Dbhelper2 dbhelper2;
     DbHelper help;
     SQLiteDatabase db,db2;
@@ -61,17 +48,19 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         help=new DbHelper(getApplicationContext());
         db2=help.getReadableDatabase();
         db=dbhelper2.getWritableDatabase();
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navHeader = navigationView.getHeaderView(0);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.nav_image);
-        imgProfile.setOnClickListener(new View.OnClickListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View navHeader = navigationView.getHeaderView(0);
+        final ImageView imageProfile = (ImageView) navHeader.findViewById(R.id.nav_image);
+        imageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getApplicationContext(),Account.class);
-                startActivity(i);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
-
         final FloatingActionButton camera=(FloatingActionButton)findViewById(R.id.menu_item);
         final FloatingActionButton audio=(FloatingActionButton)findViewById(R.id.menu_item2);
         final FloatingActionButton attachment=(FloatingActionButton)findViewById(R.id.menu_item3);
@@ -106,28 +95,50 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         displayFragment(R.id.nav_notes); //To display the notes(home) fragment at on create.
     }
 
-    public void text(){
-        Intent i=new Intent(Main.this,Notes.class);
-        startActivity(i);
+    private void camera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        }
     }
-    public void attachment(){
-        Intent i=new Intent(Main.this,Notes.class);
-        startActivity(i);
+
+    public void image() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_PICK);
+        }
     }
-    public void audio(){
-        Intent i=new Intent(Main.this,Notes.class);
-        startActivity(i);
+
+    private void audio() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("audio/*");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent,REQUEST_AUDIO_ATTACHMENT);
+        }
     }
-    public void camera(){
-        Intent i=new Intent(Main.this,Notes.class);
-        startActivity(i);
+
+
+    public void attachment() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("file/*");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent,REQUEST_FILE_ATTACHMENT);
+        }
     }
+
+
+    public void text() {
+        Intent intent = new Intent(Main.this, Notes.class);
+        intent.putExtra(Intent.EXTRA_TEXT, "Create");
+        startActivity(intent);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -184,7 +195,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
     }
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
+
 }
