@@ -1,11 +1,9 @@
 package com.projects.android.MyNotes.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +16,6 @@ import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
 import com.projects.android.MyNotes.activity.Main;
-import com.projects.android.MyNotes.activity.Notes;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.database.Dbhelper2;
 
@@ -37,7 +34,7 @@ public class BottomSheet extends BottomSheetDialogFragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.bottom_sheet, container, false);
+        View view=inflater.inflate(R.layout.bottomsheet_main, container, false);
         help=new DbHelper(getContext());
         dbhelper2=new Dbhelper2(getContext());
         db2=help.getReadableDatabase();

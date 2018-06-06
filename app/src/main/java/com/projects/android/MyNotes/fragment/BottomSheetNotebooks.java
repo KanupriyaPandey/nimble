@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 
 import com.projects.android.MyNotes.R;
 
-/**
- * Created by LENOVO on 3/30/2018.
- */
-
 public class BottomSheetNotebooks extends BottomSheetDialogFragment {
     public BottomSheetNotebooks()
     {

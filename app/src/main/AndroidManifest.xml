@@ -13,14 +13,10 @@
         <activity
             android:name=".activity.About"
             android:parentActivityName=".activity.Main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.Account"
-            android:parentActivityName=".activity.Main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.NoActionBar" />
         <activity
             android:name=".activity.Splash"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +29,6 @@
         <activity
             android:name=".activity.Notes"
             android:parentActivityName=".activity.Main" />
-        <activity android:name=".activity.Preview"></activity>
     </application>
 
 </manifest>

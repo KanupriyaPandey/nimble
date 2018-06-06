@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,9 +32,9 @@
         android:src="@drawable/fab_add"
         fab:menu_animationDelayPerItem="50"
         fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_colorNormal="@color/primaryLight"
+        fab:menu_colorNormal="@color/colorAccent"
         fab:menu_colorPressed="@color/colorPrimary"
-        fab:menu_colorRipple="@color/colorAccent"
+        fab:menu_colorRipple="@color/colorPrimaryDark"
         fab:menu_fab_hide_animation="@anim/scale_down"
         fab:menu_fab_label="Add"
         fab:menu_fab_show_animation="@anim/scale_up"
@@ -72,19 +71,27 @@
             style="@style/MenuButtonsStyle.2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_audio"
-            fab:fab_label="@string/audio" />
+            android:src="@drawable/ic_photo"
+            fab:fab_label="@string/image" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_item3"
             style="@style/MenuButtonsStyle.3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_audio"
+            fab:fab_label="@string/audio" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_item4"
+            style="@style/MenuButtonsStyle.4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_attachment"
             fab:fab_label="@string/attachment" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item4"
+            android:id="@+id/menu_item5"
             style="@style/MenuButtonsStyle.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

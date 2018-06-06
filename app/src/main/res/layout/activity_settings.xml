@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.projects.android.MyNotes.activity.Settings">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/settings"
+        android:background="?attr/colorPrimary" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -26,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/card_spacing"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="@drawable/ripple"
                 android:padding="@dimen/padding"
                 app:cardCornerRadius="@dimen/card_corner_radius"
@@ -60,14 +70,14 @@
                             android:id="@+id/account_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/medium_spacing"
+                            android:layout_marginStart="@dimen/medium_spacing"
                             android:padding="@dimen/medium_spacing"
                             app:srcCompat="@drawable/ic_account" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/large_spacing"
+                            android:layout_marginStart="@dimen/large_spacing"
                             android:layout_toRightOf="@id/account_img"
                             android:paddingBottom="@dimen/default_spacing"
                             android:paddingRight="@dimen/medium_spacing">
@@ -77,7 +87,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/account_title"
-                                android:textColor="@color/primary"
+                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -86,7 +96,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/account_title"
                                 android:text="@string/account_sub"
-                                android:textColor="@color/primary3"
+                                android:textColor="@color/accent"
                                 android:textSize="@dimen/medium_text" />
                         </RelativeLayout>
                     </LinearLayout>
@@ -103,14 +113,14 @@
                             android:id="@+id/view_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/medium_spacing"
+                            android:layout_marginStart="@dimen/medium_spacing"
                             android:padding="@dimen/medium_spacing"
                             app:srcCompat="@drawable/ic_view" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/large_spacing"
+                            android:layout_marginStart="@dimen/large_spacing"
                             android:layout_toRightOf="@id/view_img"
                             android:paddingBottom="@dimen/default_spacing"
                             android:paddingRight="@dimen/medium_spacing">
@@ -120,31 +130,38 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/view_title"
-                                android:textColor="@color/primary"
+                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <RadioGroup
                                 android:id="@+id/radioGroup"
-                                android:layout_width="wrap_content"
+                                android:paddingEnd="@dimen/thin_padding"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/view_title">
 
                                 <RadioButton
                                     android:id="@+id/radio_grid"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:checked="true"
                                     android:text="@string/grid"
-                                    android:textColor="@color/primary2"
-                                    android:textSize="@dimen/medium_text" />
+                                    android:textColor="@color/accent"
+                                    android:textSize="@dimen/medium_text"
+                                    android:layoutDirection="rtl"
+                                    android:textAlignment="textStart"
+                                    android:layout_gravity="start" />
 
                                 <RadioButton
                                     android:id="@+id/radio_list"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/list"
-                                    android:textColor="@color/primary2"
-                                    android:textSize="@dimen/medium_text" />
+                                    android:textColor="@color/accent"
+                                    android:textSize="@dimen/medium_text"
+                                    android:layoutDirection="rtl"
+                                    android:textAlignment="textStart"
+                                    android:layout_gravity="start" />
                             </RadioGroup>
                         </RelativeLayout>
                     </LinearLayout>
@@ -159,6 +176,7 @@
                 android:layout_below="@id/general_card"
                 android:layout_marginBottom="@dimen/card_spacing"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="@drawable/ripple"
                 android:padding="@dimen/padding"
                 app:cardCornerRadius="@dimen/card_corner_radius"
@@ -176,7 +194,7 @@
                         android:id="@+id/theme_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/medium_spacing"
+                        android:paddingStart="@dimen/medium_spacing"
                         android:text="@string/Theme"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/big_text"
@@ -194,7 +212,7 @@
                             android:id="@+id/base_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/medium_spacing"
+                            android:layout_marginStart="@dimen/medium_spacing"
                             android:layout_marginTop="2dp"
                             android:padding="@dimen/medium_spacing"
                             app:srcCompat="@drawable/ic_palette" />
@@ -202,7 +220,7 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/large_spacing"
+                            android:layout_marginStart="@dimen/large_spacing"
                             android:layout_toRightOf="@id/base_img"
                             android:paddingBottom="@dimen/default_spacing"
                             android:paddingRight="@dimen/medium_spacing">
@@ -212,7 +230,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/base_title"
-                                android:textColor="@color/primary"
+                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -221,32 +239,32 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/base_title"
                                 android:text="@string/base_sub"
-                                android:textColor="@color/primary2"
+                                android:textColor="@color/accent"
                                 android:textSize="@dimen/medium_text" />
                         </RelativeLayout>
                     </LinearLayout>
 
                     <!-- Customize -->
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/customizeTheme"
+                        android:id="@+id/customize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingTop="@dimen/medium_spacing">
 
                         <ImageView
-                            android:id="@+id/customize_img"
+                            android:id="@+id/custom_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/medium_spacing"
                             android:padding="@dimen/medium_spacing"
-                            app:srcCompat="@drawable/ic_github" />
+                            app:srcCompat="@drawable/ic_color" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/large_spacing"
-                            android:layout_toRightOf="@id/customize_img"
+                            android:layout_toRightOf="@id/custom_img"
                             android:paddingBottom="@dimen/default_spacing"
                             android:paddingRight="@dimen/medium_spacing">
 
@@ -255,7 +273,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/custom_title"
-                                android:textColor="@color/primary"
+                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -264,10 +282,97 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/custom_title"
                                 android:text="@string/custom_sub"
-                                android:textColor="@color/primary2"
+                                android:textColor="@color/accent"
                                 android:textSize="@dimen/medium_text" />
                         </RelativeLayout>
                     </LinearLayout>
+
+                    <!--Primary-->
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/medium_spacing">
+
+                        <ImageView
+                            android:id="@+id/primary_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_spacing"
+                            android:padding="@dimen/medium_spacing"
+                            app:srcCompat="@drawable/ic_color2" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/large_spacing"
+                            android:layout_toRightOf="@id/primary_img"
+                            android:paddingBottom="@dimen/default_spacing"
+                            android:paddingRight="@dimen/medium_spacing">
+
+                            <TextView
+                                android:id="@+id/primary_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/primary_title"
+                                android:textColor="@color/richBlack"
+                                android:textSize="@dimen/medium_text" />
+
+                            <TextView
+                                android:id="@+id/primary_sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/primary_title"
+                                android:text="@string/primary_sub"
+                                android:textColor="@color/accent"
+                                android:textSize="@dimen/medium_text" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!--Accent-->
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/accent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/medium_spacing">
+
+                        <ImageView
+                            android:id="@+id/accent_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_spacing"
+                            android:padding="@dimen/medium_spacing"
+                            app:srcCompat="@drawable/ic_colorize" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/large_spacing"
+                            android:layout_toRightOf="@id/accent_img"
+                            android:paddingBottom="@dimen/default_spacing"
+                            android:paddingRight="@dimen/medium_spacing">
+
+                            <TextView
+                                android:id="@+id/accent_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/accent_title"
+                                android:textColor="@color/richBlack"
+                                android:textSize="@dimen/medium_text" />
+
+                            <TextView
+                                android:id="@+id/accent_sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/accent_title"
+                                android:text="@string/accent_sub"
+                                android:textColor="@color/accent"
+                                android:textSize="@dimen/medium_text" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -279,6 +384,7 @@
                 android:layout_below="@id/theme_card"
                 android:layout_marginBottom="@dimen/card_spacing"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="@drawable/ripple"
                 android:padding="@dimen/padding"
                 app:cardCornerRadius="@dimen/card_corner_radius"
@@ -296,13 +402,13 @@
                         android:id="@+id/advanced_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/medium_spacing"
+                        android:paddingStart="@dimen/medium_spacing"
                         android:text="@string/Advanced"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/big_text"
                         android:textStyle="bold" />
 
-                    <!--Base Theme-->
+                    <!--Location-->
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:id="@+id/setting1"
                         android:layout_width="match_parent"
@@ -314,16 +420,16 @@
                             android:id="@+id/setting1_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/medium_spacing"
+                            android:layout_marginStart="@dimen/medium_spacing"
                             android:layout_marginTop="2dp"
                             android:padding="@dimen/medium_spacing"
-                            app:srcCompat="@drawable/ic_palette" />
+                            app:srcCompat="@drawable/ic_location" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/large_spacing"
-                            android:layout_toRightOf="@id/base_img"
+                            android:layout_marginStart="@dimen/large_spacing"
+                            android:layout_toRightOf="@id/setting1_img"
                             android:paddingBottom="@dimen/default_spacing"
                             android:paddingRight="@dimen/medium_spacing">
 
@@ -332,22 +438,110 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/setting1_title"
-                                android:textColor="@color/primary"
+                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
-                                android:id="@+id/setting1e_sub"
+                                android:id="@+id/setting1_sub"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/setting1_title"
                                 android:text="@string/setting1_sub"
-                                android:textColor="@color/primary2"
+                                android:textColor="@color/accent"
                                 android:textSize="@dimen/medium_text" />
                         </RelativeLayout>
                     </LinearLayout>
 
+                    <!--Language-->
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/setting2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/large_spacing">
+
+                        <ImageView
+                            android:id="@+id/setting2_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_spacing"
+                            android:layout_marginTop="2dp"
+                            android:padding="@dimen/medium_spacing"
+                            app:srcCompat="@drawable/ic_language" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/large_spacing"
+                            android:layout_toRightOf="@id/setting2_img"
+                            android:paddingBottom="@dimen/default_spacing"
+                            android:paddingRight="@dimen/medium_spacing">
+
+                            <TextView
+                                android:id="@+id/setting2_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/setting2_title"
+                                android:textColor="@color/richBlack"
+                                android:textSize="@dimen/medium_text" />
+
+                            <TextView
+                                android:id="@+id/setting2_sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/setting2_title"
+                                android:text="@string/setting2_sub"
+                                android:textColor="@color/accent"
+                                android:textSize="@dimen/medium_text" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!--Default-->
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/setting3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/large_spacing">
+
+                        <ImageView
+                            android:id="@+id/setting3_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_spacing"
+                            android:layout_marginTop="2dp"
+                            android:padding="@dimen/medium_spacing"
+                            app:srcCompat="@drawable/ic_undo" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/large_spacing"
+                            android:layout_toRightOf="@id/setting3_img"
+                            android:paddingBottom="@dimen/default_spacing"
+                            android:paddingRight="@dimen/medium_spacing">
+
+                            <TextView
+                                android:id="@+id/setting3_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/setting3_title"
+                                android:textColor="@color/richBlack"
+                                android:textSize="@dimen/medium_text" />
+
+                            <TextView
+                                android:id="@+id/setting3_sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/setting3_title"
+                                android:text="@string/setting3_sub"
+                                android:textColor="@color/accent"
+                                android:textSize="@dimen/medium_text" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</RelativeLayout>
+</LinearLayout>

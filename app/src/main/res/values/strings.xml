@@ -3,6 +3,7 @@
     <string name="app_description">A colorful material design notes app.</string>
     <string name="version">v0.1-beta1</string>
     <string name="splash">My Notes...</string>
+    <string name="image_description">Image Icon</string>
 
     <!--NAVIGATION DRAWER-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -15,10 +16,9 @@
 
     <!--AUTHOR-->
     <string name="name">Kanupriya Pandey</string>
-    <string name="role">Backend and Frontend Developer</string>
+    <string name="role">Developer</string>
     <string name="description">I\'m a computer enthusiast and I love to code. I\'m currently pursuing Bachelors of Technology. I\'m also a bibliophile and share an equal love for music.  </string>
     <string name="name2">Aayush Rajput</string>
-    <string name="role2">Backend Developer</string>
     <string name="description2">sample</string>
 
     <!--ABOUT-->
@@ -30,46 +30,56 @@
     <string name="about_license">License</string>
     <string name="license">Library Licenses</string>
     <string name="license_sub">Check third-party libraries used in Notes .</string>
-
     <!--LINKS-->
     <string name="mail_link">Send Mail</string>
     <string name="github_link"><body><a href="https://github.com/KanupriyaPandey">Github Profile</a></body></string>
     <string name="github_link2"><body><a href="https://github.com/KanupriyaPandey">Github Profile</a></body></string>
+
     <!--MAIN-->
     <string name="camera">Camera</string>
+    <string name="image">Image</string>
     <string name="audio">Audio</string>
     <string name="attachment">Attachment</string>
     <string name="reminder">Reminder</string>
     <string name="text">Text Note</string>
 
-    <string name="username">Username</string>
-    <string name="userEmail">mynotes.app@android.com</string>
-    <string name="email">Email ID</string>
-    <!--SETTINGS-->
+    <!--Settings-->
     <string name="General">General</string>
     <string name="view_title">Views</string>
-    <string name="list">List</string>
-    <string name="grid">Grid</string>
+    <string name="list">List View</string>
+    <string name="grid">Grid View</string>
     <string name="reminder_title">Reminder</string>
     <string name="reminder_sub">Reminder settings.</string>
-    <string name="account_title">Account</string>
-    <string name="account_sub">Account settings.</string>
+    <string name="account_title">Account Picture</string>
+    <string name="account_sub">Change account image..</string>
     <string name="Theme">Theme</string>
     <string name="base_title">Basic Theme</string>
     <string name="base_sub">Select a base theme.</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark  Theme</string>
     <string name="custom_title">Customize</string>
-    <string name="custom_sub">Theme</string>
+    <string name="custom_sub">Select from predefined themes.</string>
+    <string name="primary_title">Primary Color</string>
+    <string name="primary_sub">Main color used in app.</string>
+    <string name="accent_title">Accent Color</string>
+    <string name="accent_sub">Secondary color used in the app.</string>
     <string name="Advanced">Advanced</string>
-    <string name="setting1_title">Theme</string>
-    <string name="setting1_sub">Theme</string>
-    <!--NOTES-->
-    <string name="title_undo">Undo</string>
-    <string name="title_redo">Redo</string>
+    <string name="setting1_title">Location</string>
+    <string name="setting1_sub">Enable Geotagging.</string>
+    <string name="setting2_title">Language</string>
+    <string name="setting2_sub">Enable Geotagging.</string>
+    <string name="setting3_title">Default</string>
+    <string name="setting3_sub">Restore to default settings.</string>
+
+    <!--Notes-->
+    <string name="title_share">Share</string>
     <string name="title_attach">Attach</string>
     <string name="title_background">Background</string>
+    <string name="title_customise">Customise</string>
+    <string name="done">Done</string>
+    <string name="date">9 March 2018</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--BOTTOM SHEET-->
+    <!--Bottom Sheet-->
     <string name="Preview">Preview</string>
     <string name="Edit">Edit</string>
     <string name="Share">Share</string>
@@ -79,8 +89,6 @@
     <string name="create_new_notebook">Create New NoteBook</string>
     <string name="restore">Restore</string>
     <string name="remove">Remove</string>
-    <string name="date">Date</string>
-    <string name="done">Done</string>
     <string name="empty_bin">Empty Bin</string>
 
 </resources>
