@@ -161,7 +161,7 @@ public class Notebooks extends Fragment {
                     {
                         if ((note.getString(0).length() == 0) || (note.getString(1).length() == 0)) {
                             try {
-                                Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
+                                Data a = new Data(note.getString(0), note.getString(1), note.getString(2), null);
                                 list.add(a);
                             } catch (Exception e) {
                                 Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
@@ -177,7 +177,7 @@ public class Notebooks extends Fragment {
                             if (i >= 50) {
                                 Content += "....";
                             }
-                            Data a = new Data(note.getString(0), Content, note.getString(2));
+                            Data a = new Data(note.getString(0), Content, note.getString(2), null);
                             list.add(a);
                         }
                     }

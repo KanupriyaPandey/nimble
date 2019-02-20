@@ -1,13 +1,15 @@
 package com.projects.android.MyNotes.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,23 +19,24 @@ import com.projects.android.MyNotes.fragment.AccentPicker;
 import com.projects.android.MyNotes.fragment.Home;
 import com.projects.android.MyNotes.fragment.PrimaryPicker;
 import com.projects.android.MyNotes.fragment.ThemeDialog;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 public class Settings extends AppCompatActivity {
-    Home home;
     RadioButton grid,list;
     Toolbar toolbar;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    Shared_Preferences shared_preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        home = new Home();
+        shared_preferences=new Shared_Preferences(getApplicationContext());
+        setTheme(shared_preferences.getTheme());
         setContentView(R.layout.activity_settings);
         grid =  findViewById(R.id.radio_grid);
         list =  findViewById(R.id.radio_list);
         toolbar=findViewById(R.id.toolbar_settings);
-
+        toolbar.setBackground(new ColorDrawable(shared_preferences.get_primaryColor()));
+        setCheckedRadio();
         grid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,21 +51,21 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.base_title).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.base).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showThemeDialog();
             }
         });
 
-        findViewById(R.id.primary_title).setOnClickListener(new TextView.OnClickListener() {
+        findViewById(R.id.primary).setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPaletteDialog();
             }
         });
 
-        findViewById(R.id.accent_title).setOnClickListener(new TextView.OnClickListener() {
+        findViewById(R.id.accent).setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAccentDialog();
@@ -71,24 +74,14 @@ public class Settings extends AppCompatActivity {
     }
 
     public void setCheckedRadio() {
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor = sharedPreferences.edit();
-        if(sharedPreferences.contains("checkbox_1")&&sharedPreferences.contains("checkbox_2")) {
-            grid.setChecked(sharedPreferences.getBoolean("checkbox_1", false));
-            list.setChecked(sharedPreferences.getBoolean("checkbox_2", false));
-        }
+        shared_preferences.setCheckbox(grid, list);
     }
 
     public void applyGrid() {
         boolean checked = grid.isChecked();
         if (checked) {
             try {
-                editor.putBoolean("checkbox_1", grid.isChecked());
-                editor.putBoolean("checkbox_2", false);
-                editor.apply();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("k", "Grid"); //Changing the value of the Shared Preference
-                editor.apply();
+                shared_preferences.apply_grid();
                 Intent i = new Intent(getApplicationContext(), Main.class);
                 startActivity(i);
             } catch (Exception e) {
@@ -102,12 +95,7 @@ public class Settings extends AppCompatActivity {
         boolean checked=list.isChecked();
         if(checked)        {
             try{
-                editor.putBoolean("checkbox_2", list.isChecked());
-                editor.putBoolean("checkbox_1",false);
-                editor.apply();
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString("k","List");   //Changing the value of the Shared Preference
-                editor.apply();
+                shared_preferences.apply_list();
                 Intent i = new Intent(getApplicationContext(), Main.class);
                 startActivity(i);
             }
@@ -131,7 +119,7 @@ public class Settings extends AppCompatActivity {
 
     private void showThemeDialog() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        ThemeDialog themeDialog = ThemeDialog.newInstance();
-        themeDialog.show(fragmentManager, "Accent");
+        ThemeDialog themeDialog = ThemeDialog.newInstance(this);
+        themeDialog.show(fragmentManager, "Theme");
     }
 }

@@ -1,6 +1,7 @@
 package com.projects.android.MyNotes.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -12,13 +13,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.projects.android.MyNotes.R;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 public class About extends AppCompatActivity {
     TextView git, gmail, git2, gmail2;
+    Shared_Preferences shared_preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        shared_preferences = new Shared_Preferences(getApplicationContext());
+        setTheme(shared_preferences.getTheme());
         setContentView(R.layout.activity_about);
         git = (TextView) findViewById(R.id.github);
         gmail = (TextView) findViewById(R.id.mail);

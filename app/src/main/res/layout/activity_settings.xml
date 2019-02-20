@@ -87,7 +87,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/account_title"
-                                android:textColor="@color/richBlack"
+                                
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -130,7 +130,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/view_title"
-                                android:textColor="@color/richBlack"
+                                
                                 android:textSize="@dimen/medium_text" />
 
                             <RadioGroup
@@ -230,7 +230,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/base_title"
-                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -273,7 +272,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/custom_title"
-                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -290,6 +288,8 @@
                     <!--Primary-->
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:id="@+id/primary"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -316,7 +316,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/primary_title"
-                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -359,7 +358,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/accent_title"
-                                android:textColor="@color/richBlack"
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -438,7 +436,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/setting1_title"
-                                android:textColor="@color/richBlack"
+                                
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -482,7 +480,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/setting2_title"
-                                android:textColor="@color/richBlack"
+                                
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView
@@ -526,7 +524,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/setting3_title"
-                                android:textColor="@color/richBlack"
+                                
                                 android:textSize="@dimen/medium_text" />
 
                             <TextView

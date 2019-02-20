@@ -2,6 +2,9 @@ package com.projects.android.MyNotes.activity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
 import com.github.clans.fab.FloatingActionButton;
@@ -25,30 +29,41 @@ import com.projects.android.MyNotes.fragment.BottomSheetTrash;
 import com.projects.android.MyNotes.fragment.Home;
 import com.projects.android.MyNotes.fragment.Notebooks;
 import com.projects.android.MyNotes.fragment.Trash;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 import com.projects.android.MyNotes.listener.OnFragmentInteraction;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteraction {
-    private final int REQUEST_IMAGE_PICK = 1;
-    static final int REQUEST_IMAGE_CAPTURE = 2;
+    private static final int REQUEST_IMAGE_PICK = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 2;
     static final int REQUEST_AUDIO_ATTACHMENT = 3;
     static final int REQUEST_FILE_ATTACHMENT = 4;
     String photoPath;
     Dbhelper2 dbhelper2;
     DbHelper help;
     SQLiteDatabase db,db2;
+    Shared_Preferences shared_preferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        shared_preferences = new Shared_Preferences(getApplicationContext());
+        setTheme(shared_preferences.getTheme());
         setContentView(R.layout.activity_home);
         dbhelper2=new Dbhelper2(getApplicationContext());
         help=new DbHelper(getApplicationContext());
         db2=help.getReadableDatabase();
         db=dbhelper2.getWritableDatabase();
+        //recreate();
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setBackground(new ColorDrawable(shared_preferences.get_primaryColor()));
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
         View navHeader = navigationView.getHeaderView(0);
@@ -118,7 +133,52 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             startActivityForResult(intent, REQUEST_IMAGE_PICK);
         }
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == REQUEST_IMAGE_PICK){
+            if(resultCode == RESULT_OK) {
+                try{
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    try {
+                        Intent intent = new Intent(getApplicationContext(), ImActivity.class);
+                        intent.putExtra("ImageURI", imageUri.toString());
+                        /*ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                        selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, bs);
+                        intent.putExtra("byteArray", bs.toByteArray());*/
+                        startActivity(intent);
+                    }
+                     catch(Exception e)
+                     {
+                         Toast.makeText(this, String.valueOf(e)+" INTENT", Toast.LENGTH_SHORT).show();
+                     }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }else if(requestCode == REQUEST_IMAGE_CAPTURE){
+            if(resultCode == RESULT_OK) {
+                try {
+                    final Bitmap capture = (Bitmap) data.getExtras().get("data");
+                    Intent intent = new Intent(getApplicationContext(), ImActivity.class);
+                    ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                    capture.compress(Bitmap.CompressFormat.JPEG, 100, bs);
+                    intent.putExtra("byteArray", bs.toByteArray());
+                    startActivity(intent);
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
     private void audio() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("audio/*");

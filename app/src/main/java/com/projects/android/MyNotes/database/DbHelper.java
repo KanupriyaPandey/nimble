@@ -40,26 +40,33 @@ public class DbHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
-    public void addInfo(String title, String content, String background, SQLiteDatabase db) {
+    public void addInfo(String title, byte[] image, String content, String background, SQLiteDatabase db) {
         ContentValues cv = new ContentValues();
         try {
             cv.put("Title", title);
             cv.put("Content", content);
             cv.put("Date", getDateTime());
-            //cv.put("Image",image);
+            cv.put("image",image);
             cv.put("Background", background);
             db.insert("note", null, cv);
         } catch (Exception exp) {
             System.out.println(exp.toString());
         }
     }
-
     public Cursor getAll(SQLiteDatabase db) {
         Cursor data;
         String[] Column_name = {"Title", "Content", "Date","Id","Notebook","Background"};
         data = db.query("note", Column_name, null, null, null, null, null);
         return data;
     }
+    public Cursor getImg(SQLiteDatabase db) {
+        Cursor data;
+        String[] Column_name = {"image"};
+        data = db.query("note", Column_name, null, null, null, null, null);
+        return data;
+    }
+
+
     public void updateNote(String id,String newTitle, String newContent, String background, SQLiteDatabase db)
     {
         ContentValues newValues=new ContentValues();

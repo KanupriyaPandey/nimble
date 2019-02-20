@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.projects.android.MyNotes.R;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
@@ -21,9 +22,7 @@ public class AccentPicker extends DialogFragment {
     int[] array;
     int colorMain, index;
     TextView dialogTitle;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
+    Shared_Preferences shared_preferences;
     public AccentPicker() {
     }
 
@@ -34,16 +33,14 @@ public class AccentPicker extends DialogFragment {
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.picker_accent, null);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        editor = sharedPreferences.edit();
+        shared_preferences = new Shared_Preferences(getContext());
         dialogTitle = view.findViewById(R.id.accent_title);
-
         picker = view.findViewById(R.id.accent);
         array = view.getResources().getIntArray(R.array.main);
         picker.setColors(array);
-        index=sharedPreferences.getInt("index", 3);
+        index=shared_preferences.get_accentIndex();
         picker.setSelectedColor(array[index]);
-        dialogTitle.setBackgroundColor(sharedPreferences.getInt("accent", array[3]));
+        dialogTitle.setBackgroundColor(shared_preferences.getaccentColor());
 
         picker.setOnColorChangedListener(new OnColorChangedListener() {
             @Override
@@ -57,10 +54,10 @@ public class AccentPicker extends DialogFragment {
                 .setView(view)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        editor.putInt("accent", colorMain).apply();
                         index=getArrayIndex(array, colorMain);
-                        editor.putInt("index", index).apply();
                         picker.setSelectedColor(array[index]);
+                        shared_preferences.setColorAccent(colorMain, index);
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

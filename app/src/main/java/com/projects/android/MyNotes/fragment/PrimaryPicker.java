@@ -2,8 +2,10 @@ package com.projects.android.MyNotes.fragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
@@ -11,8 +13,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
@@ -22,8 +26,7 @@ public class PrimaryPicker extends DialogFragment {
     int[] arrayMain, arrayShade;
     int colorMain, colorMainDark, color, indexMain, indexShade;
     TextView dialogTitle;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    Shared_Preferences shared_preferences;
 
     public PrimaryPicker() {
     }
@@ -34,23 +37,20 @@ public class PrimaryPicker extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
+        shared_preferences = new Shared_Preferences((getContext()));
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.picker_primary, null);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        editor = sharedPreferences.edit();
         dialogTitle = view.findViewById(R.id.primary_title);
         pickerMain = view.findViewById(R.id.primary_main);
         pickerShade = view.findViewById(R.id.primary);
-
         arrayMain = view.getResources().getIntArray(R.array.main);
         arrayShade = view.getResources().getIntArray(R.array.pink);
         pickerMain.setColors(arrayMain);
-        showShade(sharedPreferences.getInt("primary_main",arrayMain[1]));
-
-        indexMain = sharedPreferences.getInt("main_index", 1);
-        indexShade = sharedPreferences.getInt("shade_index", 4);
+        showShade(shared_preferences.get_primaryColor());
+        indexMain = shared_preferences.get_primaryIndex();
+        indexShade = shared_preferences.get_shadeIndex();
         pickerMain.setSelectedColor(arrayMain[indexMain]);
         pickerShade.setSelectedColor(arrayShade[indexShade]);
-        dialogTitle.setBackgroundColor(sharedPreferences.getInt("primary", arrayShade[4]));
+        dialogTitle.setBackgroundColor(shared_preferences.get_shadeColor());
 
         pickerMain.setOnColorChangedListener(new OnColorChangedListener() {
             @Override
@@ -74,11 +74,17 @@ public class PrimaryPicker extends DialogFragment {
                 .setView(view)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        editor.putInt("primary", color).apply();
-                        editor.putInt("primary_dark", colorMainDark).apply();
-                        editor.putInt("primary_main", colorMain).apply();
-                        editor.putInt("main_index", getArrayIndex(arrayMain, colorMain)).apply();
-                        editor.putInt("shade_index", getArrayIndex(arrayShade, color)).apply();
+                        try {
+                            int shadeIndex = getArrayIndex(arrayShade, color);
+                            int mainIndex = getArrayIndex(arrayMain, colorMain);
+                            shared_preferences.setColorPrimary(color, colorMain, colorMainDark, shadeIndex, mainIndex);
+                            Toast.makeText(getActivity(), "Updating the PrimaryColor", Toast.LENGTH_SHORT).show();
+                            restartSelf();
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -147,5 +153,11 @@ public class PrimaryPicker extends DialogFragment {
             }
         }
         return index;
+    }
+    private void restartSelf() {
+        Intent i = getActivity().getBaseContext().getPackageManager()
+                .getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+        getActivity().finish();
+        startActivity(i);
     }
 }

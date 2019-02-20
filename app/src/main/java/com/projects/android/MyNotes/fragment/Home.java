@@ -22,6 +22,7 @@ import com.projects.android.MyNotes.activity.Notes;
 import com.projects.android.MyNotes.adapter.CardAdapter;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.helper.Data;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 import com.projects.android.MyNotes.listener.OnFragmentInteraction;
 import com.projects.android.MyNotes.listener.RecyclerTouch;
 
@@ -40,6 +41,7 @@ public class Home extends Fragment {
     DbHelper help;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    Shared_Preferences shared_preferences;
 
     public Home() {
     }
@@ -54,6 +56,7 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        shared_preferences = new Shared_Preferences(getContext());
         if (onFragmentInteraction != null) {
             onFragmentInteraction.setActionBarTitle("Home");
         }
@@ -62,12 +65,7 @@ public class Home extends Fragment {
         list = new ArrayList<>();
         cardAdapter = new CardAdapter(getActivity(), list);
         ButterKnife.bind(getActivity());
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (!sharedPreferences.contains("k")) {
-            editor = sharedPreferences.edit();
-            editor.putString("k", "Grid");
-            editor.apply();
-        }
+        shared_preferences.check_layout();
         try {
             viewChange(view);
         } catch (Exception e) {
@@ -80,9 +78,6 @@ public class Home extends Fragment {
                 Intent intent = new Intent(getContext(), Notes.class);
                 String k1 = "v1";
                 intent.putExtra(k1, String.valueOf(position));
-                editor=sharedPreferences.edit();
-                editor.putString("Update","Yes"); // Remove it
-                editor.apply();
                 intent.putExtra(Intent.EXTRA_TEXT, "Preview");
                 startActivity(intent);
             }
@@ -95,7 +90,7 @@ public class Home extends Fragment {
         try {
             prepareAlbums();
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Prepare Album" + String.valueOf(e), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Prepare Album " + String.valueOf(e), Toast.LENGTH_LONG).show();
         }
         return view;
     }
@@ -127,7 +122,7 @@ public class Home extends Fragment {
     }
 
     public void viewChange(View view) {
-        switch (sharedPreferences.getString("k", "")) {
+        switch (shared_preferences.return_layout()) {
             case "Grid": {
                 recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
                 cardAdapter = new CardAdapter(getContext(), list);
@@ -155,33 +150,41 @@ public class Home extends Fragment {
 
     public void prepareAlbums() {
         Cursor note = help.getAll(db);
-        if (note.moveToLast()) {
+        Cursor image = help.getImg(db);
+        if (note.moveToLast() && image.moveToLast()) {
             do {
-                if ((note.getString(0).length() == 0) || (note.getString(1).length() == 0)) {
-                    try {
-                        Data a = new Data(note.getString(0), note.getString(1), note.getString(2));
+                if (image.getBlob(0) == null) {
+                    if ((note.getString(0).length() == 0) || (note.getString(1).length() == 0)) {
+                        try {
+                            Data a = new Data(note.getString(0), note.getString(1), note.getString(2),null);
+                            list.add(a);
+                        } catch (Exception e) {
+                            Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        String Content = "";
+                        int i = 0;
+                        do {
+                            Content += note.getString(1).charAt(i);
+                            i++;
+                        }
+                        while (i < note.getString(1).length() && i < 50);
+                        if (i >= 50) {
+                            Content += "....";
+                        }
+                        Data a = new Data(note.getString(0), Content, note.getString(2), null);
                         list.add(a);
-                    } catch (Exception e) {
-                        Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    String Content = "";
-                    int i = 0;
-                    do {
-                        Content += note.getString(1).charAt(i);
-                        i++;
-                    }
-                    while (i < note.getString(1).length() && i < 50);
-                    if (i >= 50) {
-                        Content += "....";
-                    }
-                    Data a = new Data(note.getString(0), Content, note.getString(2));
+                }
+                else
+                {
+                    Data a = new Data("","", note.getString(2), image.getBlob(0));
                     list.add(a);
                 }
             }
-            while (note.moveToPrevious());
+            while (note.moveToPrevious()&& image.moveToPrevious());
         }
-        if (sharedPreferences.getString("k", "").equals("Grid"))
+        if ((shared_preferences.return_layout()).equals("Grid"))
             cardAdapter.notifyDataSetChanged();
         else
             cardAdapter.notifyDataSetChanged();

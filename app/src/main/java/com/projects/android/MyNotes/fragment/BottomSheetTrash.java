@@ -77,7 +77,7 @@ public class BottomSheetTrash extends BottomSheetDialogFragment {
     }
     public void restore_note()
     {
-        help2.addInfo(Title,Content, "0",db2);
+        help2.addInfo(Title, null, Content, "0",db2);
         permanent_delete(id);
     }
     public void permanent_delete(int id)

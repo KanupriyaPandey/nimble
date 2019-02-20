@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.projects.android.MyNotes.R;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.fragment.BackgroundSheet;
+import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 public class Notes extends AppCompatActivity {
     EditText editNote;
@@ -33,16 +35,17 @@ public class Notes extends AppCompatActivity {
     public static int position;
     String primary_title, contents;
     int id;
-    SharedPreferences preferences;
     String k = "v2";
     Intent intent;
     int resource;
     Drawable default_background;
+    Shared_Preferences shared_preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+        shared_preferences = new Shared_Preferences(getApplicationContext());
         help = new DbHelper(getApplicationContext());
         db = help.getWritableDatabase();
         dbRead = help.getReadableDatabase();
@@ -55,6 +58,9 @@ public class Notes extends AppCompatActivity {
 
         Toolbar toolbar =  findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setBackground(new ColorDrawable(shared_preferences.get_primaryColor()));
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -86,7 +92,7 @@ public class Notes extends AppCompatActivity {
                 try {
                     setData(position);
                 } catch (Exception e) {
-                    Toast.makeText(this, String.valueOf(e), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, String.valueOf(e)+"SetData", Toast.LENGTH_LONG).show();
                 }
                 displayNote.setText(contents);
                 displayNote.setOnClickListener(new View.OnClickListener() {
@@ -137,30 +143,41 @@ public class Notes extends AppCompatActivity {
                 return true;
             }
         });
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
     public void setData(int position) {
         Cursor data = help.getAll(dbRead);
+        Cursor img = help.getImg(dbRead);
+        img.moveToLast();
         int i = 0;
         if (data.moveToLast()) {
             while (i < position) {
                 data.moveToPrevious();
+                img.moveToPrevious();
                 i++;
             }
         }
-        primary_title = data.getString(0);
-        id = data.getInt(3);
-        if (data.getString(1).length() <= 1)
-            contents = data.getString(0) + "\n";
-        else
-            contents = data.getString(0) + "\n" + data.getString(1);
-        editNote.setText(contents);
-        String date_time[] = data.getString(2).split(" ");
-        date.setText(date_time[0]);
-        resource = Integer.parseInt(data.getString(5));
-        if (Integer.parseInt(data.getString(5)) != 0) {
-            rv.setBackgroundResource(resource);
+        if(img.getBlob(0) != null)
+        {
+            Intent intent = new Intent(getApplicationContext(), ImActivity.class);
+            intent.putExtra("byteArrayPreview", img.getBlob(0));
+            intent.putExtra(Intent.EXTRA_TEXT, "PREVIEW");
+            startActivity(intent);
+        }
+        else {
+            primary_title = data.getString(0);
+            id = data.getInt(3);
+            if (data.getString(1).length() <= 1)
+                contents = data.getString(0) + "\n";
+            else
+                contents = data.getString(0) + "\n" + data.getString(1);
+            editNote.setText(contents);
+            String date_time[] = data.getString(2).split(" ");
+            date.setText(date_time[0]);
+            resource = Integer.parseInt(data.getString(5));
+            if (Integer.parseInt(data.getString(5)) != 0) {
+                rv.setBackgroundResource(resource);
+            }
         }
     }
 
@@ -208,7 +225,7 @@ public class Notes extends AppCompatActivity {
                 } else {
                     Content += "\n";
                     String[] split = Content.split("\n", 2);
-                    help.addInfo(split[0], split[1], String.valueOf(resource), db);
+                    help.addInfo(split[0], null, split[1], String.valueOf(resource), db);
                 }
             }
         }
