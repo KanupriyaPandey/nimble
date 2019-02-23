@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.projects.android.MyNotes.R;
@@ -25,6 +26,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, text, date;
         public ImageView imageView;
+        public RelativeLayout relativeLayout;
 
         public MyViewHolder(View view) {
             super(view);
@@ -32,6 +34,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             text = (TextView) view.findViewById(R.id.text);
             date = (TextView) view.findViewById(R.id.date);
             imageView = (ImageView) view.findViewById(R.id.image);
+            relativeLayout = (RelativeLayout) view.findViewById(R.id.relativeLayout);
         }
     }
 
@@ -74,6 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
                     holder.title.setVisibility(View.GONE);
                     holder.text.setVisibility(View.GONE);
                     holder.imageView.setVisibility(View.VISIBLE);
+                    holder.relativeLayout.setPadding(0,0,0,0);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(details.getImage(), 0, details.getImage().length);
                     holder.imageView.setImageBitmap(bitmap);
         }
