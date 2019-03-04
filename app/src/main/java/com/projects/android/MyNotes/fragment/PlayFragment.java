@@ -195,7 +195,7 @@ public class PlayFragment extends AppCompatDialogFragment {
     }
     public void startPlaying()
     {
-        Toast.makeText(getActivity(), "Start PLaying", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Start PLaying", Toast.LENGTH_SHORT).show();
      btnPlay.setImageResource(R.drawable.ic_media_pause);
      try
      {
