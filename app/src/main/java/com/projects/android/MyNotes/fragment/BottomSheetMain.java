@@ -64,7 +64,7 @@ public class BottomSheetMain extends BottomSheetDialogFragment{
     }
     public void deleteNote()
     {   Home home=new Home();
-        int position=home.select;
+        int position=Home.select;
         Cursor data=help.getAll(db2);
         int i=0;
         if(data.moveToLast())

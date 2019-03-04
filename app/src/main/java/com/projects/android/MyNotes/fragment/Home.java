@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +40,8 @@ public class Home extends Fragment {
     private OnFragmentInteraction onFragmentInteraction;
     SQLiteDatabase db;
     DbHelper help;
+    public static String content;
+    public static Data item;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Shared_Preferences shared_preferences;
@@ -75,11 +78,37 @@ public class Home extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouch(getContext(), recyclerView, new RecyclerTouch.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getContext(), Notes.class);
-                String k1 = "v1";
-                intent.putExtra(k1, String.valueOf(position));
-                intent.putExtra(Intent.EXTRA_TEXT, "Preview");
-                startActivity(intent);
+                Cursor data = help.getAll(db);
+                int i = 0;
+                if (data.moveToLast()) {
+                    while (i < position) {
+                        data.moveToPrevious();
+                        i++;
+                    }
+                }
+                if(data.getString(0).equalsIgnoreCase("Audio_Recorded"))
+                {
+                    try {
+                        content = data.getString(1);
+                        //Toast.makeText(this, "Audio_Recorded", Toast.LENGTH_SHORT).show();
+                        item = new Data(null, content, null, null);
+                        PlayFragment playFragment = new PlayFragment().newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                        playFragment.show(transaction, "dialog_playback");
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(getActivity(), String.valueOf(e), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Intent intent = new Intent(getContext(), Notes.class);
+                    String k1 = "v1";
+                    intent.putExtra(k1, String.valueOf(position));
+                    intent.putExtra(Intent.EXTRA_TEXT, "Preview");
+                    startActivity(intent);
+                }
             }
 
             @Override

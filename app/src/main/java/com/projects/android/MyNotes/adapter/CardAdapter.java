@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.support.v7.app.WindowDecorActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.projects.android.MyNotes.helper.Data;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
     private List<Data> list;
@@ -55,33 +57,57 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Data details = list.get(position);
         if (details.getImage() == null) {
-            if (details.getTitle().length() >= 15) {
-                holder.title.setVisibility(View.GONE);
-                holder.text.setTextSize(20);
-                holder.text.setText(details.getTitle() + "\n" + details.getText());
+            if (details.getTitle().equalsIgnoreCase("Audio_Recorded")) {
+                holder.title.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_microphone, 0, 0, 0);
+                String[] content = details.getText().split("\n", 2);
+                int len = content[0].length();
+                holder.title.setText(content[0].substring(0,len-4));
+                holder.title.setTextSize(18);
+                long duration = Integer.parseInt(content[1]);
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(duration) - TimeUnit.MINUTES.toSeconds(minutes);
+                holder.text.setText(String.format("%02d:%02d", minutes, seconds));
+                holder.date.setText(details.getDate());
             } else {
-                if (details.getText().length() <= 10) {
-                    holder.title.setTextSize(23);
-                    holder.text.setTextSize(23);
-                }
-                if (details.getText().length() == 0) {
-                    holder.title.setTextSize(30);
-                    holder.text.setVisibility(View.GONE);
-                }
-                holder.title.setText(details.getTitle());
-                holder.text.setText(details.getText());
-            }
-
-            holder.date.setText(details.getDate());
-        } else {
+                if (details.getTitle().length() >= 15) {
                     holder.title.setVisibility(View.GONE);
-                    holder.text.setVisibility(View.GONE);
-                    holder.imageView.setVisibility(View.VISIBLE);
-                    holder.relativeLayout.setPadding(0,0,0,0);
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(details.getImage(), 0, details.getImage().length);
-                    holder.imageView.setImageBitmap(bitmap);
+                    if (details.getTitle().length() < 25)
+                        holder.text.setTextSize(25);
+                    else if (details.getTitle().length() <= 40)
+                        holder.text.setTextSize(20);
+                    else if (details.getTitle().length() <= 65)
+                        holder.text.setTextSize(28);
+                    else
+                        holder.text.setTextSize(15);
+                    holder.text.setText(details.getTitle() + "\n" + details.getText());
+                } else {
+                    if (details.getText().length() <= 20) {
+                        holder.title.setTextSize(22);
+                        holder.text.setTextSize(18);
+                    }
+                    if (details.getText().length() == 0) {
+                        if (details.getTitle().length() <= 5)
+                            holder.title.setTextSize(28);
+                        else if (details.getTitle().length() < 15)
+                            holder.title.setTextSize(20);
+                        holder.text.setVisibility(View.GONE);
+                    }
+                    holder.title.setText(details.getTitle());
+                    holder.text.setText(details.getText());
+                }
+
+                holder.date.setText(details.getDate());
+            }
         }
-    }
+        else{
+                holder.title.setVisibility(View.GONE);
+                holder.text.setVisibility(View.GONE);
+                holder.imageView.setVisibility(View.VISIBLE);
+                holder.relativeLayout.setPadding(0, 0, 0, 0);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(details.getImage(), 0, details.getImage().length);
+                holder.imageView.setImageBitmap(bitmap);
+            }
+        }
 
 
     @Override

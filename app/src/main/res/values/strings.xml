@@ -90,5 +90,6 @@
     <string name="restore">Restore</string>
     <string name="remove">Remove</string>
     <string name="empty_bin">Empty Bin</string>
+    <string name="start_recording">Tap here to start the recording</string>
 
 </resources>

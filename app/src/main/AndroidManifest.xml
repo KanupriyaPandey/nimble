@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projects.android.MyNotes">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/mynotesicon"
@@ -29,7 +32,9 @@
         <activity
             android:name=".activity.Notes"
             android:parentActivityName=".activity.Main" />
-        <activity android:name=".activity.ImActivity"></activity>
+        <activity android:name=".activity.ImActivity" />
+        <service android:name=".activity.RecordService" />
+        <activity android:name=".activity.Audio"/>
     </application>
 
 </manifest>

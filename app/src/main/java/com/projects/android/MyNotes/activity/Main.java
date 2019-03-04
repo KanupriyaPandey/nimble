@@ -180,11 +180,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
     private void audio() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("audio/*");
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent,REQUEST_AUDIO_ATTACHMENT);
-        }
+        Intent intent = new Intent(getApplicationContext(), Audio.class);
+        startActivity(intent);
     }
 
 

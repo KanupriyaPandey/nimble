@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -21,7 +24,10 @@ import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
 import com.projects.android.MyNotes.database.DbHelper;
+import com.projects.android.MyNotes.fragment.AlertDialogFragment;
 import com.projects.android.MyNotes.fragment.BackgroundSheet;
+import com.projects.android.MyNotes.fragment.PlayFragment;
+import com.projects.android.MyNotes.helper.Data;
 import com.projects.android.MyNotes.helper.Shared_Preferences;
 
 public class Notes extends AppCompatActivity {
