@@ -3,30 +3,20 @@
     <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/richBlack</item>
-    </style>
-
-    <style name="Theme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
     </style>
 
     <style name="ThemeDark" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:windowBackground">@color/richBlack</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ThemeDark.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.Fullscreen">
         <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>>
     </style>
 
     <style name="MenuButtonsStyle">
@@ -34,25 +24,9 @@
         <item name="fab_showAnimation">@anim/jump_from_down</item>
         <item name="fab_hideAnimation">@anim/jump_to_down</item>
         <item name="fab_shadowColor">@color/black_overlay</item>
-        <item name="fab_colorNormal">@color/primary5</item>
-        <item name="fab_colorPressed">@color/colorAccent</item>
+        <item name="fab_colorNormal">@color/colorAccent</item>
+        <item name="fab_colorPressed">@color/colorPrimary</item>
         <item name="fab_colorRipple">@color/colorPrimary</item>
-    </style>
-
-    <style name="MenuButtonsStyle.2">
-        <item name="fab_colorNormal">@color/primary4</item>
-    </style>
-
-    <style name="MenuButtonsStyle.3">
-        <item name="fab_colorNormal">@color/primary3</item>
-    </style>
-
-    <style name="MenuButtonsStyle.4">
-        <item name="fab_colorNormal">@color/primary2</item>
-    </style>
-
-    <style name="MenuButtonsStyle.5">
-        <item name="fab_colorNormal">@color/primary</item>
     </style>
 
     <style name="MenuLabelsStyle">
@@ -61,5 +35,9 @@
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
     </style>
+
+    <style name="Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

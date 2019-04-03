@@ -23,6 +23,22 @@
         <item>@color/grey</item>
     </integer-array>
 
+    <integer-array name="color">
+        <item>@color/red</item>
+        <item>@color/pink</item>
+        <item>@color/purple</item>
+        <item>@color/deep_purple</item>
+        <item>@color/indigo</item>
+        <item>@color/blue</item>
+        <item>@color/light_blue</item>
+        <item>@color/cyan</item>
+        <item>@color/green</item>
+        <item>@color/yellow</item>
+        <item>@color/orange</item>
+        <item>@color/deep_orange</item>
+
+    </integer-array>
+
     <integer-array name="light_blue">
         <item>@color/md_light_blue_100</item>
         <item>@color/md_light_blue_200</item>

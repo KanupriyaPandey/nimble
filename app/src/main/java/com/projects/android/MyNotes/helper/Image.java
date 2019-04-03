@@ -1,7 +1,5 @@
 package com.projects.android.MyNotes.helper;
 
-import android.graphics.drawable.Drawable;
-
 public class Image {
     private int imageResource;
     private int id;
@@ -14,7 +12,10 @@ public class Image {
     public int getImageResource() {
         return imageResource;
     }
-    public int getId(){return id;}
+
+    public int getId() {
+        return id;
+    }
 
 }
 

@@ -20,10 +20,6 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Created by LENOVO on 2/27/2019.
- */
-
 public class RecordService extends Service {
     DbHelper helper;
     SQLiteDatabase db;

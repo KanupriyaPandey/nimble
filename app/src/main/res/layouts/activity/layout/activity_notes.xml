@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notes_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image2"
+    android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.projects.android.MyNotes.activity.NoteText">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/notes_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="?homeAsUpIndicator">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/upDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:text="@string/date"
+                android:textSize="@dimen/default_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/upDone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/large"
+                android:gravity="center"
+                android:text="@string/done"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/default_text"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/microphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notes_toolbar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/default_value"
+        android:clickable="true"
+        android:drawableEnd="@drawable/ic_mic"
+        android:drawablePadding="@dimen/default_value"
+        android:gravity="end"
+        android:text="Tap on mic to start"
+        android:textSize="@dimen/default_text" />
+
+    <TextView
+        android:id="@+id/displayNote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation_notes"
+        android:layout_below="@id/microphone"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_value"
+        android:background="@drawable/border"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="serif-monospace"
+        android:padding="@dimen/medium"
+        android:scrollbars="vertical"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editNote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation_notes"
+        android:layout_below="@id/microphone"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_value"
+        android:background="@drawable/border"
+        android:fontFamily="monospace"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:minLines="40"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:scrollHorizontally="false" />
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/colorPrimaryDark"
+        app:menu="@menu/notes" />
+
+
+</RelativeLayout>

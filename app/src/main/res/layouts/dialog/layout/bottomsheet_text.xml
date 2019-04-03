@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sheet_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/medium"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_down" />
+
+        <TextView
+            android:id="@+id/text_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_value"
+            android:text="@string/color"
+            android:textSize="@dimen/default_text" />
+
+        <uz.shift.colorpicker.LineColorPicker xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/color"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="@dimen/default_value"
+            app:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/text_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_value"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_down"
+            android:text="@string/text_font"
+            android:textSize="@dimen/default_text" />
+
+        <LinearLayout
+            android:id="@+id/font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/medium"
+            android:visibility="gone">
+
+            <RadioGroup
+                android:id="@+id/radioGroupFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/monospace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="monospace"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/dark_theme"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+
+                <RadioButton
+                    android:id="@+id/casual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:checked="true"
+                    android:fontFamily="casual"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/light_theme"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+
+                <RadioButton
+                    android:id="@+id/cursive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="cursive"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/cursive"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+
+                <RadioButton
+                    android:id="@+id/serif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:fontFamily="sans-serif"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/serif"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_value"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_down"
+            android:text="@string/text_style"
+            android:textSize="@dimen/default_text" />
+
+        <LinearLayout
+            android:id="@+id/style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/medium"
+            android:visibility="gone">
+
+            <RadioGroup
+                android:id="@+id/radioGroupStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:checked="true"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/normal"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/bold"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text"
+                    android:textStyle="bold" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_value"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_down"
+            android:text="@string/text_size"
+            android:textSize="@dimen/default_text" />
+
+        <LinearLayout
+            android:id="@+id/size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/medium"
+            android:visibility="gone">
+
+            <RadioGroup
+                android:id="@+id/radioGroupSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:checked="true"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/small"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+
+                <RadioButton
+                    android:id="@+id/medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/medium"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+
+
+                <RadioButton
+                    android:id="@+id/large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/default_value"
+                    android:text="@string/large"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/default_text" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,47 +1,36 @@
 <resources>
-    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <!--Height-->
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="nav_image">120dp</dimen>
-    <dimen name="account_image">160dp</dimen>
-    <dimen name="fab_margin">12dp</dimen>
-    <dimen name="list_margin">10dp</dimen>
 
+    <!--Card-->
     <dimen name="card_corner_radius">2dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_spacing">16dp</dimen>
 
-    <dimen name="spacing">6dp</dimen>
-    <dimen name="small_spacing">8dp</dimen>
-    <dimen name="medium_spacing">12dp</dimen>
-    <dimen name="large_spacing">14dp</dimen>
-    <dimen name="default_spacing">16dp</dimen>
+    <!--Space-->
+    <dimen name="min">2dp</dimen>
+    <dimen name="vsmall">4dp</dimen>
+    <dimen name="small">8dp</dimen>
+    <dimen name="medium">12dp</dimen>
+    <dimen name="default_value">16dp</dimen>
+    <dimen name="large">20dp</dimen>
+    <dimen name="vlarge">48dp</dimen>
 
-    <dimen name="margin">24dp</dimen>
-    <dimen name="large_margin">46dp</dimen>
-    <dimen name="vlarge_margin">98dp</dimen>
-
-    <dimen name="padding">20dp</dimen>
-    <dimen name="small_padding">2dp</dimen>
-    <dimen name="thin_padding">10dp</dimen>
-    <dimen name="medium_padding">28dp</dimen>
-
-    <dimen name="size">2dp</dimen>
-    <dimen name="image_size">20dp</dimen>
-    <dimen name="medium_size">24dp</dimen>
-
-    <dimen name="small_text">10dp</dimen>
-    <dimen name="medium_text">16sp</dimen>
-    <dimen name="big_text">20sp</dimen>
-
-    <dimen name="item_margin">4dp</dimen>
-    <dimen name="item_padding">20dp</dimen>
-
-    <dimen name="textViewPad">5dp</dimen>
-    <dimen name="textViewMarg">10dp</dimen>
+    <!--Text-->
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="default_text">16sp</dimen>
+    <dimen name="large_text">20sp</dimen>
     <dimen name="DateSize">12sp</dimen>
-    <dimen name="TitleSize">20sp</dimen>
     <dimen name="TextSize">14sp</dimen>
 
-    <dimen name="bottom_sheet_text">18sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="thumbnail_size">80dp</dimen>
+    <dimen name="recycler_size">100dp</dimen>
+    <dimen name="thumbnail_horizontal_padding">8dp</dimen>
+    <dimen name="thumbnail_vertical_padding">10dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="margin_horizontal">16dp</dimen>
+    <dimen name="lbl_edit_image_control">100dp</dimen>
 
 </resources>

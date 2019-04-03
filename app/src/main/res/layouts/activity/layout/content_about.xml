@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.About"
+    tools:showIn="@layout/activity_about">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--Developer1-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:padding="@dimen/default_value"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/medium">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/my_header_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/header" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginTop="105dp"
+                        android:src="@drawable/profile_image2"
+                        app:civ_border_color="@color/black_overlay"
+                        app:civ_border_width="@dimen/min" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="158dp"
+                        android:layout_toEndOf="@id/profile_image"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/linearLayout"
+                            android:layout_marginStart="@dimen/small"
+                            android:layout_toEndOf="@+id/linearLayout"
+                            android:layout_weight="1"
+                            android:text="@string/name"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/large_text"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/role"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium"
+                            android:text="@string/role"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/default_text" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium"
+                    android:text="@string/description"
+                    android:textSize="@dimen/default_text" />
+                <!--Links-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/default_value">
+
+                    <ImageView
+                        android:id="@+id/profile_gmail_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/medium"
+                        android:padding="@dimen/min"
+                        app:srcCompat="@drawable/ic_gmail" />
+
+                    <TextView
+                        android:id="@+id/mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/medium"
+                        android:layout_toEndOf="@id/profile_gmail_img"
+                        android:clickable="true"
+                        android:text="@string/mail_link"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/default_text" />
+
+                    <ImageView
+                        android:id="@+id/profile_github_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/github"
+                        android:padding="@dimen/min"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <TextView
+                        android:id="@+id/github"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/medium"
+                        android:clickable="true"
+                        android:text="@string/github_link"
+                        android:textColorLink="@color/colorAccent"
+                        android:textSize="@dimen/default_text" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--Developer2-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:padding="@dimen/default_value"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/medium">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/my_header_img2"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/header" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image2"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="@dimen/small"
+                        android:layout_marginTop="105dp"
+                        android:src="@drawable/profile_image2"
+                        app:civ_border_color="@color/black_overlay"
+                        app:civ_border_width="@dimen/min" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="158dp"
+                        android:layout_toEndOf="@id/profile_image2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/name2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/linearLayout2"
+                            android:layout_marginStart="@dimen/small"
+                            android:layout_toEndOf="@+id/linearLayout2"
+                            android:layout_weight="1"
+                            android:text="@string/name2"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/large_text"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/role2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium"
+                            android:text="@string/role"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/default_text" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/description2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium"
+                    android:text="@string/description2"
+                    android:textSize="@dimen/default_text" />
+
+                <!--Links-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/default_value">
+
+                    <ImageView
+                        android:id="@+id/profile_gmail_img2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/medium"
+                        android:padding="@dimen/min"
+                        app:srcCompat="@drawable/ic_gmail" />
+
+                    <TextView
+                        android:id="@+id/mail2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/medium"
+                        android:layout_toEndOf="@id/profile_gmail_img2"
+                        android:clickable="true"
+                        android:text="@string/mail_link"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/default_text" />
+
+                    <ImageView
+                        android:id="@+id/profile_github_img2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/github2"
+                        android:padding="@dimen/min"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <TextView
+                        android:id="@+id/github2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/medium"
+                        android:clickable="true"
+                        android:text="@string/github_link"
+                        android:textColorLink="@color/colorAccent"
+                        android:textSize="@dimen/default_text" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--Support-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/about_support_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:padding="@dimen/default_value"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@drawable/ripple"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/default_value"
+                android:paddingBottom="@dimen/default_value">
+
+                <TextView
+                    android:id="@+id/support"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/medium"
+                    android:text="@string/about_support"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/large_text"
+                    android:textStyle="bold" />
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/about_report_bug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_value">
+
+                    <ImageView
+                        android:id="@+id/bug_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/medium"
+                        android:layout_marginTop="2dp"
+                        android:padding="@dimen/medium"
+                        app:srcCompat="@drawable/ic_bug" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_value"
+                        android:layout_toEndOf="@id/bug_img"
+                        android:paddingRight="@dimen/medium"
+                        android:paddingBottom="@dimen/default_value">
+
+                        <TextView
+                            android:id="@+id/bug_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/report_bug"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/default_text" />
+
+                        <TextView
+                            android:id="@+id/bug_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/bug_title"
+                            android:text="@string/report_bug_sub"
+                            android:textSize="@dimen/default_text" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/about_support_github"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/medium">
+
+                    <ImageView
+                        android:id="@+id/github_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/medium"
+                        android:padding="@dimen/medium"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_value"
+                        android:layout_toEndOf="@id/github_img"
+                        android:paddingRight="@dimen/medium"
+                        android:paddingBottom="@dimen/default_value">
+
+                        <TextView
+                            android:id="@+id/github_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/github"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/default_text" />
+
+                        <TextView
+                            android:id="@+id/github_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/github_title"
+                            android:text="@string/github_sub"
+                            android:textSize="@dimen/default_text" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--License-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/license_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:padding="@dimen/default_value"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/default_value"
+                android:paddingBottom="@dimen/labels_text_size">
+
+                <TextView
+                    android:id="@+id/license"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/medium"
+                    android:text="@string/about_license"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/large_text"
+                    android:textStyle="bold" />
+                <!--LIBRARY LICENSE-->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_value">
+
+                    <ImageView
+                        android:id="@+id/license_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/medium"
+                        android:padding="@dimen/medium"
+                        app:srcCompat="@drawable/ic_file" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_value"
+                        android:layout_toEndOf="@id/license_img"
+                        android:paddingRight="@dimen/medium"
+                        android:paddingBottom="@dimen/default_value">
+
+                        <TextView
+                            android:id="@+id/license_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/license"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/default_text" />
+
+                        <TextView
+                            android:id="@+id/license_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/license_title"
+                            android:text="@string/license_sub"
+                            android:textSize="@dimen/default_text" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

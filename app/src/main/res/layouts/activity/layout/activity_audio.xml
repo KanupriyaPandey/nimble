@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_audio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/animation"
+    android:orientation="vertical"
+    tools:context="com.projects.android.MyNotes.activity.NoteVoice">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/audio_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="?homeAsUpIndicator">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/large"
+                android:gravity="center"
+                android:text="@string/action_save"
+                android:textSize="@dimen/default_text"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/recordProgressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="64dp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="60sp" />
+
+        <ProgressBar
+            android:id="@+id/recordProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/vlarge"
+            android:background="@drawable/progressbar_background"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progressbar" />
+
+        <TextView
+            android:id="@+id/record_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnRecord"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/default_value"
+            android:text="@string/start_recording"
+            android:textSize="@dimen/default_text" />
+
+        <Button
+            android:id="@+id/btnRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/vlarge"
+            android:background="@null"
+            android:drawableBottom="@drawable/microphone" />
+    </RelativeLayout>
+</LinearLayout>

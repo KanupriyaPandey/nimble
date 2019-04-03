@@ -1,12 +1,10 @@
 package com.projects.android.MyNotes.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,12 +17,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.projects.android.MyNotes.R;
-import com.projects.android.MyNotes.activity.Notes;
+import com.projects.android.MyNotes.activity.NoteText;
 import com.projects.android.MyNotes.adapter.CardAdapter;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.helper.Data;
-import com.projects.android.MyNotes.helper.Shared_Preferences;
-import com.projects.android.MyNotes.listener.OnFragmentInteraction;
+import com.projects.android.MyNotes.helper.Preference;
 import com.projects.android.MyNotes.listener.RecyclerTouch;
 
 import java.util.ArrayList;
@@ -37,14 +34,13 @@ public class Home extends Fragment {
     public RecyclerView recyclerView;
     public List<Data> list;
     public static int select;
-    private OnFragmentInteraction onFragmentInteraction;
-    SQLiteDatabase db;
-    DbHelper help;
     public static String content;
     public static Data item;
+    SQLiteDatabase db;
+    DbHelper help;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    Shared_Preferences shared_preferences;
+    Preference preference;
 
     public Home() {
     }
@@ -59,16 +55,14 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        shared_preferences = new Shared_Preferences(getContext());
-        if (onFragmentInteraction != null) {
-            onFragmentInteraction.setActionBarTitle("Home");
-        }
+        preference = new Preference(getContext());
+
         help = new DbHelper(getContext());
         db = help.getReadableDatabase();
         list = new ArrayList<>();
         cardAdapter = new CardAdapter(getActivity(), list);
         ButterKnife.bind(getActivity());
-        shared_preferences.check_layout();
+        preference.check_layout();
         try {
             viewChange(view);
         } catch (Exception e) {
@@ -86,24 +80,20 @@ public class Home extends Fragment {
                         i++;
                     }
                 }
-                if(data.getString(0).equalsIgnoreCase("Audio_Recorded"))
-                {
+                if (data.getString(0).equalsIgnoreCase("Audio_Recorded")) {
                     try {
                         content = data.getString(1);
                         //Toast.makeText(this, "Audio_Recorded", Toast.LENGTH_SHORT).show();
                         item = new Data(null, content, null, null);
-                        PlayFragment playFragment = new PlayFragment().newInstance();
+                        Play play = new Play().newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
-                        playFragment.show(transaction, "dialog_playback");
-                    }
-                    catch(Exception e)
-                    {
+                        play.show(transaction, "dialog_playback");
+                    } catch (Exception e) {
                         Toast.makeText(getActivity(), String.valueOf(e), Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
-                    Intent intent = new Intent(getContext(), Notes.class);
+                } else {
+                    Intent intent = new Intent(getContext(), NoteText.class);
                     String k1 = "v1";
                     intent.putExtra(k1, String.valueOf(position));
                     intent.putExtra(Intent.EXTRA_TEXT, "Preview");
@@ -117,9 +107,9 @@ public class Home extends Fragment {
             }
         }));
         try {
-            prepareAlbums();
+            prepare();
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Prepare Album " + String.valueOf(e), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Prepare Note " + String.valueOf(e), Toast.LENGTH_LONG).show();
         }
         return view;
     }
@@ -133,27 +123,10 @@ public class Home extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            onFragmentInteraction = (OnFragmentInteraction) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement OnFragmentInteraction");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        onFragmentInteraction = null;
-    }
-
     public void viewChange(View view) {
-        switch (shared_preferences.return_layout()) {
+        recyclerView = view.findViewById(R.id.recycler_view_home);
+        switch (preference.return_layout()) {
             case "Grid": {
-                recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
                 cardAdapter = new CardAdapter(getContext(), list);
                 StaggeredGridLayoutManager mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(mLayoutManager);
@@ -163,7 +136,6 @@ public class Home extends Fragment {
             }
             case "List": {
                 try {
-                    recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
                     cardAdapter = new CardAdapter(getContext(), list);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -177,7 +149,7 @@ public class Home extends Fragment {
         }
     }
 
-    public void prepareAlbums() {
+    public void prepare() {
         Cursor note = help.getAll(db);
         Cursor image = help.getImg(db);
         if (note.moveToLast() && image.moveToLast()) {
@@ -185,7 +157,7 @@ public class Home extends Fragment {
                 if (image.getBlob(0) == null) {
                     if ((note.getString(0).length() == 0) || (note.getString(1).length() == 0)) {
                         try {
-                            Data a = new Data(note.getString(0), note.getString(1), note.getString(2),null);
+                            Data a = new Data(note.getString(0), note.getString(1), note.getString(2), null);
                             list.add(a);
                         } catch (Exception e) {
                             Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
@@ -204,16 +176,14 @@ public class Home extends Fragment {
                         Data a = new Data(note.getString(0), Content, note.getString(2), null);
                         list.add(a);
                     }
-                }
-                else
-                {
-                    Data a = new Data("","", note.getString(2), image.getBlob(0));
+                } else {
+                    Data a = new Data("", "", note.getString(2), image.getBlob(0));
                     list.add(a);
                 }
             }
-            while (note.moveToPrevious()&& image.moveToPrevious());
+            while (note.moveToPrevious() && image.moveToPrevious());
         }
-        if ((shared_preferences.return_layout()).equals("Grid"))
+        if ((preference.return_layout()).equals("Grid"))
             cardAdapter.notifyDataSetChanged();
         else
             cardAdapter.notifyDataSetChanged();

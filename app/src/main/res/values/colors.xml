@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>    <!--Default Theme-->
+<resources>
+
     <color name="colorPrimaryDark">#B3001B</color>
-    <color name="colorPrimary">#F50057</color>
-    <color name="colorAccent">#02182B</color>
-    <!--Text color-->
-    <color name="accent">#0EB1D2</color>
+    <color name="colorPrimary">#E91E63</color>
+    <color name="colorAccent">#03A9F4</color>
+
+
+    <color name="color_option_menu">#FF3990</color>
+    <color name="filter_label_normal">#8A8889</color>
+    <color name="filter_label_selected">#221F20</color>
+
     <!--Menu button-->
     <color name="primary">#075160</color>
     <color name="primary2">#0C91AC</color>
@@ -12,35 +17,10 @@
     <color name="primary4">#23B8D6</color>
     <color name="primary5">#39BFDA</color>
 
-    <!--Green Theme-->
-    <color name="GcolorPrimaryDark">#0D1205</color>
-    <color name="GcolorPrimary">#61892F</color>
-    <color name="GcolorAccent">#25350E</color>
-    <!--Text color-->
-    <color name="Gaccent">#86C232</color>
-    <!--Menu button-->
-    <color name="Gprimary">#314713</color>
-    <color name="Gprimary2">#41611C</color>
-    <color name="Gprimary3">#71B12E</color>
-    <color name="Gprimary4">#91C744</color>
-
-    <!--Pop Theme-->
-    <color name="PcolorPrimaryDark">#0D1205</color>
-    <color name="PcolorPrimary">#61892F</color>
-    <color name="PcolorAccent">#86C232</color>
-    <!--Text color-->
-    <color name="Paccent">#0EB1D2</color>
-    <!--Menu button-->
-    <color name="Pprimary">#004D40</color>
-    <color name="Pprimary2">#006064</color>
-    <color name="Pprimary3">#E65100</color>
-    <color name="Pprimary4">#29B6F6</color>
-
-    <color name="black_overlay">#66c9b6b6</color>
     <color name="white">#FDFFFC</color>
-    <color name="dark">#474B4F</color>
-    <!--Icons color-->
-    <color name="richBlack">#000022</color>
+    <color name="black">#FF000000</color>
+    <color name="black_overlay">#66C9B6B6</color>
+
     <!--Color Collection-->
     <color name="red">#F44336</color>
     <color name="pink">#E91E63</color>

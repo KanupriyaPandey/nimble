@@ -8,7 +8,7 @@ public class Data {
         this.title = title;
         this.text = text;
         this.date = date;
-        this.image= image;
+        this.image = image;
     }
 
     public String getTitle() {
@@ -23,5 +23,7 @@ public class Data {
         return date;
     }
 
-    public byte[] getImage() { return image;}
+    public byte[] getImage() {
+        return image;
+    }
 }

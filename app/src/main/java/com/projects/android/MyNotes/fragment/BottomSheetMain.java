@@ -19,42 +19,43 @@ import com.projects.android.MyNotes.activity.Main;
 import com.projects.android.MyNotes.database.DbHelper;
 import com.projects.android.MyNotes.database.Dbhelper2;
 
-public class BottomSheetMain extends BottomSheetDialogFragment{
+public class BottomSheetMain extends BottomSheetDialogFragment {
     DbHelper help;
     SQLiteDatabase db2;
     Dbhelper2 dbhelper2;
     SQLiteDatabase db;
-    public BottomSheetMain(){
+
+    public BottomSheetMain() {
 
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.bottomsheet_main, container, false);
-        help=new DbHelper(getContext());
-        dbhelper2=new Dbhelper2(getContext());
-        db2=help.getReadableDatabase();
-        db=dbhelper2.getWritableDatabase();
-        TextView trash=(TextView)view.findViewById(R.id.del);
-        trash.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.bottomsheet_main, container, false);
+        help = new DbHelper(getContext());
+        dbhelper2 = new Dbhelper2(getContext());
+        db2 = help.getReadableDatabase();
+        db = dbhelper2.getWritableDatabase();
+
+        view.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteNote();
             }
         });
-        TextView share=(TextView)view.findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 shareNote();
             }
         });
-        TextView add=(TextView)view.findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addNote();
@@ -62,72 +63,62 @@ public class BottomSheetMain extends BottomSheetDialogFragment{
         });
         return view;
     }
-    public void deleteNote()
-    {   Home home=new Home();
-        int position=Home.select;
-        Cursor data=help.getAll(db2);
-        int i=0;
-        if(data.moveToLast())
-        {
-            while(i<position)
-            {
+
+    public void deleteNote() {
+        int position = Home.select;
+        Cursor data = help.getAll(db2);
+        int i = 0;
+        if (data.moveToLast()) {
+            while (i < position) {
                 data.moveToPrevious();
                 i++;
             }
         }
-        String Title=data.getString(0);
-        String content=data.getString(1);
+        String Title = data.getString(0);
+        String content = data.getString(1);
         try {
             dbhelper2.addInfo(Title, content, db);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "DataBase" + String.valueOf(e), Toast.LENGTH_LONG).show();
         }
-        catch (Exception e)
-        {
-            Toast.makeText(getContext(), "DataBase"+String.valueOf(e), Toast.LENGTH_LONG).show();
-        }
-        help.delete(String.valueOf(data.getInt(3)),db2);
+        help.delete(String.valueOf(data.getInt(3)), db2);
         try {
             Intent intent = new Intent(getActivity(), Main.class);
             startActivity(intent);
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(getContext(), "DataBase"+String.valueOf(e), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "DataBase" + String.valueOf(e), Toast.LENGTH_LONG).show();
         }
     }
-    public void shareNote()
-    {
-        Home home=new Home();
-        int position=home.select;
-        Cursor data=help.getAll(db2);
-        int i=0;
-        if(data.moveToLast())
-        {
-            while(i<position)
-            {
+
+    public void shareNote() {
+        int position = Home.select;
+        Cursor data = help.getAll(db2);
+        int i = 0;
+        if (data.moveToLast()) {
+            while (i < position) {
                 data.moveToPrevious();
                 i++;
             }
         }
-        String Contents=data.getString(0)+"\n"+data.getString(1);
+        String Contents = data.getString(0) + "\n" + data.getString(1);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(Contents)+"\n"+"The Message Was sent via MyNotesApp"+"\n"+"Credits:Kanupriya Pandey & Aayush Rajput");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(Contents) + "\n" + "The Message Was sent via MyNotesApp" + "\n" + "Credits:Kanupriya Pandey & Aayush Rajput");
         sendIntent.setType("text/plain");
         try {
             startActivity(sendIntent);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             Toast.makeText(getContext(), String.valueOf(e), Toast.LENGTH_LONG).show();
         }
 
     }
-    public void addNote()
-    {
-        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-        AlertDialogFragment dialogFragment=new AlertDialogFragment();
-        dialogFragment.show(fragmentManager,"Alert!!");
+
+    public void addNote() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        DialogNotebook dialogNotebook = DialogNotebook.newInstance();
+        dialogNotebook.show(fragmentManager, "NoteBook");
         dismiss();
     }
+
 }
 

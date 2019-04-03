@@ -1,0 +1,105 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/margin_horizontal"
+    android:paddingRight="@dimen/margin_horizontal"
+    tools:context=".fragment.BrushFragment">
+
+    <RadioGroup
+        android:id="@+id/radioGroupTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/brush_radio"
+            style="@android:style/Widget.CompoundButton.RadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:checked="true"
+            android:layoutDirection="rtl"
+            android:paddingTop="@dimen/vsmall"
+            android:paddingBottom="@dimen/vsmall"
+            android:text="@string/tab_brush"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <RadioButton
+            android:id="@+id/eraser_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:paddingTop="@dimen/vsmall"
+            android:paddingBottom="@dimen/vsmall"
+            android:text="@string/brush_eraser"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+    </RadioGroup>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/vsmall"
+        android:paddingBottom="@dimen/vsmall">
+
+        <TextView
+            android:layout_width="@dimen/lbl_edit_image_control"
+            android:layout_height="wrap_content"
+            android:text="@string/brush_color" />
+
+        <uz.shift.colorpicker.LineColorPicker
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/color"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:orientation="horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/vsmall"
+        android:paddingBottom="@dimen/vsmall">
+
+
+        <TextView
+            android:layout_width="@dimen/lbl_edit_image_control"
+            android:layout_height="wrap_content"
+            android:text="@string/brush_size" />
+
+        <SeekBar
+            android:id="@+id/seekbar_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/vsmall"
+        android:paddingBottom="@dimen/vsmall">
+
+
+        <TextView
+            android:layout_width="@dimen/lbl_edit_image_control"
+            android:layout_height="wrap_content"
+            android:text="@string/brush_opacity" />
+
+        <SeekBar
+            android:id="@+id/seekbar_opacity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

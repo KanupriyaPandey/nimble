@@ -11,18 +11,16 @@ import com.projects.android.MyNotes.R;
 
 import java.util.List;
 
-
-
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<String> list;
     private Context mContext;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name_notebook;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView name_notebook;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
-            name_notebook = (TextView) view.findViewById(R.id.name_notebook);
+            name_notebook = view.findViewById(R.id.name_notebook);
         }
     }
 
@@ -49,4 +47,5 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public int getItemCount() {
         return list.size();
     }
+
 }

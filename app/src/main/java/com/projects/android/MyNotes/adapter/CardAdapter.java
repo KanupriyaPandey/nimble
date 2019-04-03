@@ -3,10 +3,7 @@ package com.projects.android.MyNotes.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.support.v7.app.WindowDecorActionBar;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +14,6 @@ import android.widget.TextView;
 import com.projects.android.MyNotes.R;
 import com.projects.android.MyNotes.helper.Data;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -32,11 +28,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            text = (TextView) view.findViewById(R.id.text);
-            date = (TextView) view.findViewById(R.id.date);
-            imageView = (ImageView) view.findViewById(R.id.image);
-            relativeLayout = (RelativeLayout) view.findViewById(R.id.relativeLayout);
+            title = view.findViewById(R.id.title);
+            text = view.findViewById(R.id.text);
+            date = view.findViewById(R.id.date);
+            imageView = view.findViewById(R.id.image);
+            relativeLayout = view.findViewById(R.id.relativeLayout);
         }
     }
 
@@ -48,8 +44,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     @Override
     public CardAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card, parent, false);
-
+                .inflate(R.layout.notes_card, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -58,10 +53,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         Data details = list.get(position);
         if (details.getImage() == null) {
             if (details.getTitle().equalsIgnoreCase("Audio_Recorded")) {
-                holder.title.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_microphone, 0, 0, 0);
+                holder.title.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_mic, 0, 0, 0);
                 String[] content = details.getText().split("\n", 2);
                 int len = content[0].length();
-                holder.title.setText(content[0].substring(0,len-4));
+                holder.title.setText(content[0].substring(0, len - 4));
                 holder.title.setTextSize(18);
                 long duration = Integer.parseInt(content[1]);
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
@@ -95,19 +90,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
                     holder.title.setText(details.getTitle());
                     holder.text.setText(details.getText());
                 }
-
                 holder.date.setText(details.getDate());
             }
+        } else {
+            holder.relativeLayout.setVisibility(View.GONE);
+            holder.imageView.setVisibility(View.VISIBLE);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(details.getImage(), 0, details.getImage().length);
+            holder.imageView.setImageBitmap(bitmap);
         }
-        else{
-                holder.title.setVisibility(View.GONE);
-                holder.text.setVisibility(View.GONE);
-                holder.imageView.setVisibility(View.VISIBLE);
-                holder.relativeLayout.setPadding(0, 0, 0, 0);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(details.getImage(), 0, details.getImage().length);
-                holder.imageView.setImageBitmap(bitmap);
-            }
-        }
+    }
 
 
     @Override
